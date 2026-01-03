@@ -465,6 +465,9 @@
       .topbar a { font-size: 14px; }
       .heroGrid { gap: 20px; }
       .grid3, .grid2 { gap: 16px; }
+      /* Lock avatar size on mobile */
+      .avatarCard { position: relative !important; }
+      .avatarCard.scrolled { position: relative !important; top: auto !important; right: auto !important; width: auto !important; height: auto !important; }
     }
 
 
@@ -1088,30 +1091,35 @@
     
     let lastScrollTop = 0;
     
+    // Only enable avatar movement on desktop (screens wider than 768px)
+    const isMobile = window.innerWidth <= 768;
+    
     window.addEventListener('scroll', function() {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = (scrollTop / docHeight) * 100;
       progressBar.style.width = scrolled + '%';
 
-      // Avatar graceful movement to the right when scrolling down
-      const isScrollingDown = scrollTop > lastScrollTop;
-      
-      if (scrollTop > 150) {
-        // Once scrolled past 150px, move photo to fixed position on right
-        avatarCard.style.position = 'fixed';
-        avatarCard.style.top = '100px';
-        avatarCard.style.right = '30px';
-        avatarCard.style.zIndex = '40';
-        avatarCard.style.width = '180px';
-        avatarCard.style.height = '180px';
-      } else {
-        // Return to normal position when near top
-        avatarCard.style.position = 'relative';
-        avatarCard.style.right = 'auto';
-        avatarCard.style.top = 'auto';
-        avatarCard.style.width = 'auto';
-        avatarCard.style.height = 'auto';
+      // Avatar graceful movement to the right when scrolling down (desktop only)
+      if (!isMobile) {
+        const isScrollingDown = scrollTop > lastScrollTop;
+        
+        if (scrollTop > 150) {
+          // Once scrolled past 150px, move photo to fixed position on right
+          avatarCard.style.position = 'fixed';
+          avatarCard.style.top = '100px';
+          avatarCard.style.right = '30px';
+          avatarCard.style.zIndex = '40';
+          avatarCard.style.width = '180px';
+          avatarCard.style.height = '180px';
+        } else {
+          // Return to normal position when near top
+          avatarCard.style.position = 'relative';
+          avatarCard.style.right = 'auto';
+          avatarCard.style.top = 'auto';
+          avatarCard.style.width = 'auto';
+          avatarCard.style.height = 'auto';
+        }
       }
       
       lastScrollTop = scrollTop;
