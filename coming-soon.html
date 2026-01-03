@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coming Soon | Eric Swasey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #073763;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background elements */
+    body::before {
+      display: none;
+    }
+
+    body::after {
+      display: none;
+    }
+
+    @keyframes moveBackground {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    .container {
+      text-align: center;
+      max-width: 700px;
+      z-index: 1;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #073763;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: rgba(0, 0, 0, 0.7);
+      margin-bottom: 24px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .description {
+      font-size: 16px;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .progress-section {
+      margin: 40px 0;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(7, 55, 99, 0.2);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      animation: slideIn 0.8s ease-out 0.2s backwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .progress-label {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7dd3fc 0%, #a78bfa 100%);
+      border-radius: 3px;
+      animation: fillProgressLoop 2s ease-in-out infinite;
+    }
+
+    @keyframes fillProgressLoop {
+      0% {
+        width: 0%;
+      }
+      50% {
+        width: 75%;
+      }
+      100% {
+        width: 0%;
+      }
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7dd3fc 0%, #a78bfa 100%);
+      color: #0f0f1e;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(125, 211, 252, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(7, 55, 99, 0.1);
+      color: #073763;
+      border: 1px solid rgba(7, 55, 99, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(7, 55, 99, 0.15);
+      border-color: rgba(7, 55, 99, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .emoji {
+      font-size: 64px;
+      margin-bottom: 20px;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .features {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🚀</div>
+    <h1>Coming Soon</h1>
+    <p class="subtitle">Something Amazing is on the Way</p>
+    <p class="description">
+      I'm working on something special. Stay tuned for updates!
+    </p>
+
+    <div class="progress-section">
+      <div class="progress-label">Development Progress</div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-text">75% Complete</div>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">✨</div>
+        <div class="feature-title">Premium Design</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Lightning Fast</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Goal Focused</div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <a href="index.html" class="btn btn-primary">← Back to Portfolio</a>
+      <a href="mailto:eric.swasey@gmail.com" class="btn btn-secondary">Get Notified</a>
+    </div>
+  </div>
+</body>
+</html>
