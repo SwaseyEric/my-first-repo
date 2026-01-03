@@ -1,55 +1,1290 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Simple Webpage</title>
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background: #f4f4f9;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			min-height: 100vh;
-		}
-		header {
-			background: #4f8cff;
-			color: #fff;
-			width: 100%;
-			padding: 1.5rem 0;
-			text-align: center;
-			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-		}
-		main {
-			background: #fff;
-			margin-top: 2rem;
-			padding: 2rem;
-			border-radius: 8px;
-			box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-			max-width: 500px;
-			width: 100%;
-		}
-		h1 {
-			margin: 0;
-		}
-	</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eric Swasey | Customer Experience & Operations Leader</title>
+  <meta name="description" content="Customer Experience and Operations leader. Built high-performing support teams, strengthened QA, improved CSAT, and scaled better support systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --surface: rgba(0,0,0,.02);
+      --surface-2: rgba(0,0,0,.04);
+      --text: rgba(0,0,0,.92);
+      --muted: rgba(0,0,0,.65);
+      --faint: rgba(0,0,0,.45);
+      --line: rgba(0,0,0,.12);
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --ok: #86efac;
+      --shadow: 0 18px 60px rgba(0,0,0,.40);
+      --radius: 18px;
+      --radius-sm: 14px;
+      --max: 1080px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: 'DM Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1100px 500px at 15% 10%, rgba(125,211,252,.06), transparent 60%),
+        radial-gradient(900px 450px at 85% 20%, rgba(167,139,250,.05), transparent 55%),
+        radial-gradient(1200px 700px at 50% 95%, rgba(134,239,172,.04), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ opacity: .92; }
+
+    .wrap{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+
+    /* Top nav */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 4px rgba(125,211,252,.10);
+    }
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .pill.primary{
+      color: #ffffff;
+      border: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight: 650;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 54px 0 26px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .card{
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroCard{
+      padding: 26px;
+      display:flex;
+      flex-direction: column;
+      gap: 14px;
+      background: transparent;
+      box-shadow: none;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    h1{
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -.4px;
+      color: #073763;
+    }
+    .subhead{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 68ch;
+    }
+    .ctaRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .avatarCard {
+      padding: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position: relative;
+      overflow: visible;
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: none;    }
+
+    .avatarCard.scrolled {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 40;
+      width: 180px;
+      height: 180px;
+      padding: 0;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: none;
+    }
+
+    .avatarCard.scrolled::before {
+      display: none;
+    }
+    .avatar{
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 1 / 1.05;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px;
+      gap: 10px;
+    }
+    .avatar strong{ font-size: 16px; }
+    .avatar span{ color: var(--muted); font-size: 13px; }
+    .avatar .hint{
+      color: var(--faint);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* Sections */
+    section{ padding: 22px 0; }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    h2{
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      letter-spacing: .2px;
+      color: #073763;
+    }
+    .sectionNote{
+      color: var(--faint);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .mini{
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{
+      margin: 0 0 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      letter-spacing: .2px;
+    }
+    .mini p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta{
+      margin-top: 10px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--faint);
+      font-size: 12px;
+    }
+    .tag{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 6px 9px;
+      border-radius: 999px;
+    }
+
+    .story{
+      padding: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      background: transparent;
+      box-shadow: none;
+    }
+    .story strong{ color: var(--text); }
+
+    /* Quotes */
+    .quote{
+      padding: 18px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+    }
+    .quote p{ margin: 0; color: var(--muted); font-size: 14px; }
+    .quote .who{ margin-top: 10px; color: var(--faint); font-size: 13px; }
+
+    /* Insights list */
+    .insights{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .insight{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.04);
+    }
+    .date{
+      min-width: 118px;
+      color: var(--faint);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+    .insight h3{ margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+    .insight p{ margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .more{
+      margin-left:auto;
+      color: var(--muted);
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 8px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Footer contact */
+    .contactCard{
+      padding: 18px;
+      background: transparent;
+      box-shadow: none;
+    }
+    .contactRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .muted{ color: var(--muted); }
+
+    /* Carousel styles */
+    .carousel {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .carousel-container {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      gap: 20px;
+    }
+    .carousel-item {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 12px;
+    }
+    .carousel-item .insight {
+      padding: 10px;
+      gap: 8px;
+    }
+    .carousel-item h3 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    .carousel-item p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .carousel-item .more {
+      padding: 5px 6px;
+      font-size: 11px;
+      align-self: flex-start;
+    }
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 24px;
+      gap: 12px;
+    }
+    .carousel-learn-more {
+      padding: 8px 12px;
+      font-size: 13px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: background .2s ease;
+    }
+    .carousel-learn-more:hover {
+      background: rgba(255,255,255,.06);
+    }
+    .carousel-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.08);
+      border: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s ease;
+      font-size: 18px;
+    }
+    .carousel-btn:hover {
+      background: rgba(0,0,0,.12);
+      transform: scale(1.05);
+    }
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex: 1;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.2);
+      cursor: pointer;
+      transition: background .3s ease, transform .2s ease;
+    }
+    .dot.active {
+      background: #073763;
+      transform: scale(1.25);
+    }
+    .carousel-counter {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .date{ min-width: 98px; }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+      transition: opacity 0.3s ease;
+    }
+
+    section.animated {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .mini, .card, .quote, .insight {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .mini:hover, .quote:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .grid3 .quote:nth-child(1) { animation-delay: 0s; }
+    .grid3 .quote:nth-child(2) { animation-delay: 0.1s; }
+    .grid3 .quote:nth-child(3) { animation-delay: 0.2s; }
+
+    .insights .insight:nth-child(1) { animation-delay: 0s; }
+    .insights .insight:nth-child(2) { animation-delay: 0.1s; }
+    .insights .insight:nth-child(3) { animation-delay: 0.2s; }
+
+    .insights .insight {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    #testimonials .quote {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Scroll Progress Bar */
+    .scrollProgressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      width: 0%;
+      z-index: 999;
+      transition: width 0.1s ease;
+    }
+
+    /* Button Glow Effect */
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 0 5px rgba(125, 211, 252, 0.4), 0 0 15px rgba(167, 139, 250, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 8px rgba(125, 211, 252, 0.6), 0 0 20px rgba(167, 139, 250, 0.4);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    .pill.primary {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .pill:hover {
+      animation: glow 1.5s ease-in-out infinite;
+    }
+
+    /* Image Load Animation */
+    @keyframes imageLoadIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .avatarCard img {
+      animation: imageLoadIn 0.8s ease-out;
+      border-radius: 50%;
+      max-width: 320px;
+      transition: all 0.3s ease;
+    }
+    /* Expand/Collapse Animation */
+    .detail-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+      margin: 0;
+    }
+
+    .detail-content.expanded {
+      max-height: 2000px;
+      opacity: 1;
+      margin: 12px 0;
+    }  </style>
 </head>
+
 <body>
-	<header>
-		<h1>Welcome to Eric Swasey's Simple Webpage</h1>
-	</header>
-	<main>
-		<p>This is a simple webpage created as an example. You can edit this content to make it your own!</p>
-		<ul>
-			<li>Easy to customize</li>
-			<li>Responsive design</li>
-			<li>Clean and modern look</li>
-		</ul>
-		<div style="background-color: #E9EAEF; padding: 8px; border-radius: 4px; font-family: 'JetBrains Mono'; display: inline-block; margin-top: 4px; margin-bottom: 4px;">Added AI-generated index.html</div>
-	</main>
+  <div class="scrollProgressBar"></div>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <span class="dot"></span>
+          <span>Eric Swasey</span>
+        </a>
+
+        <div class="navlinks">
+          <a class="pill" href="#contact">Contact</a>
+          <a class="pill primary" href="coming-soon.html">Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <div class="wrap">
+      <header class="hero">
+        <div class="heroGrid">
+          <div class="card heroCard">
+            <div class="kicker">
+              <span class="badge">Customer Experience</span>
+              <span class="badge">Operations</span>
+              <span class="badge">Quality and Enablement</span>
+            </div>
+
+            <h1>Customer Experience & Operations Leader</h1>
+
+            <p class="subhead">
+              I build support organizations that feel human and run like a well-tuned system.
+              I have led teams of 20 to 32, strengthened QA and knowledge programs, and delivered measurable gains in CSAT, productivity, and efficiency.
+            </p>
+
+            <div class="ctaRow">
+              <a class="pill primary" href="#projects">View Impact</a>
+              <a class="pill primary" href="#insights">View Notes</a>
+              <a class="pill primary" href="mailto:eric.swasey@gmail.com">Email Me</a>
+            </div>
+
+            <div class="meta">
+              <span class="tag">Led 32-person team at Away Travel</span>
+              <span class="tag">Amazon Voice Program Support Manager</span>
+              <span class="tag">Built feedback and analytics loops</span>
+            </div>
+          </div>
+
+          <div class="card avatarCard">
+            <img src="C:\Users\Eswas\OneDrive\Documents\Resumes\Headshots\6.jpg" alt="Eric Swasey" style="width:100%;height:100%;object-fit:cover;border-radius:22px;" />
+          </div>
+        </div>
+      </header>
+
+      <section id="story">
+        <div class="sectionTitle">
+          <h2>📖 My Story</h2>
+          <p class="sectionNote">How I show up: calm, practical, metric-driven</p>
+        </div>
+
+        <div class="card story">
+          <p>
+            I have spent my career helping customers and teams find clarity fast, especially when situations are messy, urgent, or emotional. Over the years, I have led frontline support and operations in high-volume environments, with a steady focus on quality, coaching, escalation management, and thoughtful process design.
+          </p>
+          <p>
+            Today, I am expanding that foundation through the Pursuit AI-Native Program, where I am learning how to responsibly apply AI to real CX challenges. My goal is simple: use AI to remove friction, surface patterns faster, and give teams better signals, while keeping empathy, judgment, and trust firmly human. I believe the future of customer experience is not automation for its own sake, but systems that help people do their best work. I build those systems so the right thing is also the easy thing
+          </p>
+        </div>
+      </section>
+
+      <section id="insights">
+        <div class="sectionTitle">
+          <h2>📚 What I'm Learning in the Pursuit AI-Native Program and How It Applies to CX</h2>
+        </div>
+
+        <div class="carousel">
+          <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Is Best at Pattern Recognition, Not Judgment</h3>
+                  <p>AI excels at identifying trends across data. In CX, it surfaces recurring issues, drivers, and coaching opportunities faster while humans retain decisions and accountability.</p>
+                </div>
+              </div>
+              <div id="detail-0" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI excels at identifying trends across large volumes of data, especially where humans get overwhelmed or miss signals.</p>
+                  <p><strong>How This Helps CX:</strong> In customer experience, this means AI can surface recurring issues, escalation drivers, sentiment shifts, and coaching opportunities faster, while humans retain ownership of decisions, empathy, and accountability.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Better Inputs Create Better Outputs</h3>
+                  <p>AI is only as useful as the data and prompts it receives. Clean structure and clear intent matter more than complexity—this applies to QA, knowledge, and feedback systems.</p>
+                </div>
+              </div>
+              <div id="detail-1" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI is only as useful as the data, prompts, and context it receives. Clear structure and intent matter more than complexity.</p>
+                  <p><strong>How This Helps CX:</strong> This directly applies to QA frameworks, knowledge management, and feedback systems. When SOPs, tags, and workflows are clean, AI tools can actually support agents instead of confusing them.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Should Reduce Friction, Not Add Load</h3>
+                  <p>If an AI tool creates more steps or uncertainty, it's not doing its job.</p>
+                  <p>AI should simplify workflows, highlight the right info, and reduce manual effort.</p>
+                </div>
+              </div>
+              <div id="detail-2" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> If an AI tool creates more steps or uncertainty, it is not doing its job.</p>
+                  <p><strong>How This Helps CX:</strong> In CX environments, AI should simplify agent workflows, highlight the right information at the right time, and reduce manual effort so teams can focus on customers, not tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Automation Without Empathy Breaks Trust</h3>
+                  <p>AI can automate tasks but can't replace human judgment in emotionally charged situations. AI belongs in triage and pattern detection, empathy stays human.</p>
+                </div>
+              </div>
+              <div id="detail-3" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI can automate tasks, but it cannot replace human judgment in emotionally charged or complex situations.</p>
+                  <p><strong>How This Helps CX:</strong> This reinforces where AI belongs in support organizations: triage, summarization, pattern detection, and decision support. Empathy, escalation handling, and relationship repair stay human.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Is Most Powerful as a Signal, Not a Script</h3>
+                  <p>The strongest AI use cases support thinking, not dictate behavior. In coaching and QA, AI points to patterns while managers lead the conversations.</p>
+                </div>
+              </div>
+              <div id="detail-4" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> The strongest AI use cases support thinking instead of dictating behavior.</p>
+                  <p><strong>How This Helps CX:</strong> In coaching and QA, AI can point leaders to patterns worth addressing, while managers lead the actual conversations. This preserves trust, autonomy, and growth.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Responsible AI Requires Clear Ownership</h3>
+                  <p>AI outputs need a human owner who validates, decides, and acts. In CX, this reinforces accountability for customer outcomes while AI supports decisions.</p>
+                </div>
+              </div>
+              <div id="detail-5" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI outputs should always have a human owner who validates, decides, and acts.</p>
+                  <p><strong>How This Helps CX:</strong> In CX operations, this reinforces clear accountability for customer outcomes. AI supports decisions, but people remain responsible for policies, responses, and customer trust.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Can Accelerate Learning & Improvement</h3>
+                  <p>AI compresses learning cycles by summarizing insights and identifying what to explore next. This supports faster iteration on workflows and processes.</p>
+                </div>
+              </div>
+              <div id="detail-6" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI can compress learning cycles by summarizing insights, testing ideas quickly, and identifying what to explore next.</p>
+                  <p><strong>How This Helps CX:</strong> This supports faster iteration on workflows, knowledge updates, and process improvements without sacrificing quality or care.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>The Goal Is Better Outcomes, Not AI Adoption</h3>
+                  <p>Technology only matters if it improves real experiences. Success looks like lower friction, better coaching, and customers who feel understood.</p>
+                </div>
+              </div>
+              <div id="detail-7" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> Technology only matters if it improves real experiences.</p>
+                  <p><strong>How This Helps CX:</strong> In CX, success looks like lower friction, clearer answers, better coaching, and customers who feel understood. AI is a tool in service of those outcomes, not the headline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-nav">
+            <button class="carousel-btn" onclick="prevSlide()">←</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-learn-more" onclick="toggleDetail(currentSlide)">Learn More ↓</button>
+            <button class="carousel-btn" onclick="nextSlide()">→</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="expertise">
+        <div class="sectionTitle">
+          <h2>⚙️ Technical Expertise</h2>
+          <p class="sectionNote">Tools, programs, and operating rhythms I use to scale support</p>
+        </div>
+
+        <div class="grid3">
+          <div class="mini">
+            <h3>🎯 Quality and Coaching</h3>
+            <p>QA frameworks, calibration, performance coaching, and customer-first behaviors that improve outcomes.</p>
+            <div class="meta">
+              <span class="tag">QA audits</span><span class="tag">coaching</span><span class="tag">SOPs</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>📞 Omnichannel Support</h3>
+            <p>Phone, chat, and email operations with escalation paths and SLAs that teams can actually hit.</p>
+            <div class="meta">
+              <span class="tag">SLA</span><span class="tag">escalations</span><span class="tag">WFM alignment</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>📊 Systems and Analytics</h3>
+            <p>Trend analysis, VOC, and dashboards that turn feedback into specific fixes and measurable improvements.</p>
+            <div class="meta">
+              <span class="tag">Salesforce</span><span class="tag">Zendesk</span><span class="tag">Qualtrics</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="sectionTitle">
+          <h2>🚀 Professional Projects</h2>
+        </div>
+
+        <div class="grid3">
+          <div class="mini">
+            <h3>Customer Feedback System</h3>
+            <p>Implemented an advanced feedback program to lift customer satisfaction and improve decision-making.</p>
+            <div class="meta">
+              <span class="tag">Result: +17% CSAT</span>
+              <span class="tag">VOC</span>
+              <span class="tag">actionable insights</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Tiered Support and Escalations</h3>
+            <p>Built a tiered support model to resolve complex issues faster and reduce friction for frontline teams.</p>
+            <div class="meta">
+              <span class="tag">Result: +32% complex resolution</span>
+              <span class="tag">triage</span>
+              <span class="tag">playbooks</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Enablement and Knowledge Playbook</h3>
+            <p>Created SOPs and a customer care playbook to improve consistency, speed, and onboarding quality.</p>
+            <div class="meta">
+              <span class="tag">Result: +23% efficiency</span>
+              <span class="tag">KM</span>
+              <span class="tag">training</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:12px;"></div>
+
+        <div class="grid3">
+          <div class="mini">
+            <h3>Cross-Training Program</h3>
+            <p>Launched cross-training to improve coverage and flexibility, strengthening resource allocation during spikes.</p>
+            <div class="meta">
+              <span class="tag">Result: +26% versatility</span>
+              <span class="tag">coverage</span>
+              <span class="tag">readiness</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Support Analytics for Leadership</h3>
+            <p>Implemented analytics and reporting that gave leaders real-time visibility into drivers and retention.</p>
+            <div class="meta">
+              <span class="tag">Result: +12% retention annually</span>
+              <span class="tag">dashboards</span>
+              <span class="tag">trend analysis</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Operational Cost and Cycle Improvements</h3>
+            <p>Optimized data collection and workflows to reduce cycle time and cost while boosting productivity.</p>
+            <div class="meta">
+              <span class="tag">-17% cycle time</span>
+              <span class="tag">-24% cost</span>
+              <span class="tag">+31% productivity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="sectionTitle">
+          <h2>👥 Operational Experience</h2>
+        </div>
+
+        <div class="grid2">
+          <div class="mini">
+            <h3>Voice Program Support Manager</h3>
+            <p><strong>Amazon</strong> (Jan 2020 to Feb 2024)</p>
+            <p class="muted" style="margin-top:8px;">
+              Led 20+ customer service professionals. Improved customer satisfaction by 37% in year one through coaching and tailored training.
+              Built tiered support, cross-training, and analytics programs to improve resolution and retention.
+            </p>
+          </div>
+
+          <div class="mini">
+            <h3>Customer Experience Manager</h3>
+            <p><strong>Away Travel</strong> (Sep 2018 to Jan 2020)</p>
+            <p class="muted" style="margin-top:8px;">
+              Led a 32-person team. Increased productivity 18% and improved efficiency 23% through SOPs, playbooks, and operating cadence.
+              Implemented customer feedback loops that raised satisfaction 17%.
+            </p>
+          </div>
+
+          <div class="mini">
+            <h3>Customer Experience Manager</h3>
+            <p><strong>GBI International</strong> (Feb 2016 to Sep 2018)</p>
+            <p class="muted" style="margin-top:8px;">
+              Delivered technical support with an 89% resolution rate. Built CSR training programs that improved satisfaction 11%.
+              Partnered cross-functionally on website UI updates that drove a 22% lift in conversions.
+            </p>
+          </div>
+
+          <div class="mini">
+            <h3>Additional Roles</h3>
+            <p class="muted" style="margin-top:8px;">
+              Team Lead at Pinata, Engagement Specialist at Blake eLearning, and Customer Service Representative at aden + anais.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="certs">
+        <div class="sectionTitle">
+          <h2>🎓 Certifications & Achievements</h2>
+          <p class="sectionNote">Education, strengths, and proof points</p>
+        </div>
+
+        <div class="grid3">
+          <div class="mini">
+            <h3>B.S. Business & Liberal Arts</h3>
+            <p>Queens College (Aug 2006 to Dec 2010)</p>
+          </div>
+
+          <div class="mini">
+            <h3>Tools and Platforms</h3>
+            <p>Qualtrics, Salesforce, Zendesk, Freshdesk, LiveChat, Kustomer, Intercom, HubSpot</p>
+          </div>
+
+          <div class="mini">
+            <h3>Selected Outcomes</h3>
+            <p>+22% actionable insights, -13% workflow bottlenecks, +18% team productivity, +14% CSAT lift through feedback loops</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials">
+        <div class="sectionTitle">
+          <h2>💬 What Colleagues Say</h2>
+        </div>
+
+        <div class="grid3">
+          <div class="quote">
+            <p>"Eric brings calm structure to complex support problems. He improves the system while keeping the human experience front and center."</p>
+            <div class="who">Former stakeholder, enterprise support</div>
+          </div>
+
+          <div class="quote">
+            <p>"His coaching is consistent and specific. The team knows what good looks like and how to get there."</p>
+            <div class="who">Peer leader, customer operations</div>
+          </div>
+
+          <div class="quote">
+            <p>"He turns metrics into action. You can see the impact in CSAT, productivity, and fewer repeat issues."</p>
+            <div class="who">Cross-functional partner, product and insights</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights">
+        <div class="sectionTitle">
+          <h2>� What I'm Learning in the Pursuit AI-Native Program and How It Applies to CX</h2>
+        </div>
+
+        <div class="carousel">
+          <div class="carousel-container" id="carouselContainer">
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Is Best at Pattern Recognition, Not Judgment</h3>
+                  <p>AI excels at identifying trends across data. In CX, it surfaces recurring issues, drivers, and coaching opportunities faster while humans retain decisions and accountability.</p>
+                </div>
+              </div>
+              <div id="detail-0" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI excels at identifying trends across large volumes of data, especially where humans get overwhelmed or miss signals.</p>
+                  <p><strong>How This Helps CX:</strong> In customer experience, this means AI can surface recurring issues, escalation drivers, sentiment shifts, and coaching opportunities faster, while humans retain ownership of decisions, empathy, and accountability.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Better Inputs Create Better Outputs</h3>
+                  <p>AI is only as useful as the data and prompts it receives. Clean structure and clear intent matter more than complexity—this applies to QA, knowledge, and feedback systems.</p>
+                </div>
+              </div>
+              <div id="detail-1" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI is only as useful as the data, prompts, and context it receives. Clear structure and intent matter more than complexity.</p>
+                  <p><strong>How This Helps CX:</strong> This directly applies to QA frameworks, knowledge management, and feedback systems. When SOPs, tags, and workflows are clean, AI tools can actually support agents instead of confusing them.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Should Reduce Friction, Not Add Load</h3>
+                  <p>If an AI tool creates more steps or uncertainty, it's not doing its job.</p>
+                  <p>AI should simplify workflows, highlight the right info, and reduce manual effort.</p>
+                </div>
+              </div>
+              <div id="detail-2" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> If an AI tool creates more steps or uncertainty, it is not doing its job.</p>
+                  <p><strong>How This Helps CX:</strong> In CX environments, AI should simplify agent workflows, highlight the right information at the right time, and reduce manual effort so teams can focus on customers, not tools.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Automation Without Empathy Breaks Trust</h3>
+                  <p>AI can automate tasks but can't replace human judgment in emotionally charged situations. AI belongs in triage and pattern detection, empathy stays human.</p>
+                </div>
+              </div>
+              <div id="detail-3" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI can automate tasks, but it cannot replace human judgment in emotionally charged or complex situations.</p>
+                  <p><strong>How This Helps CX:</strong> This reinforces where AI belongs in support organizations: triage, summarization, pattern detection, and decision support. Empathy, escalation handling, and relationship repair stay human.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Is Most Powerful as a Signal, Not a Script</h3>
+                  <p>The strongest AI use cases support thinking, not dictate behavior. In coaching and QA, AI points to patterns while managers lead the conversations.</p>
+                </div>
+              </div>
+              <div id="detail-4" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> The strongest AI use cases support thinking instead of dictating behavior.</p>
+                  <p><strong>How This Helps CX:</strong> In coaching and QA, AI can point leaders to patterns worth addressing, while managers lead the actual conversations. This preserves trust, autonomy, and growth.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>Responsible AI Requires Clear Ownership</h3>
+                  <p>AI outputs need a human owner who validates, decides, and acts. In CX, this reinforces accountability for customer outcomes while AI supports decisions.</p>
+                </div>
+              </div>
+              <div id="detail-5" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI outputs should always have a human owner who validates, decides, and acts.</p>
+                  <p><strong>How This Helps CX:</strong> In CX operations, this reinforces clear accountability for customer outcomes. AI supports decisions, but people remain responsible for policies, responses, and customer trust.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>AI Can Accelerate Learning & Improvement</h3>
+                  <p>AI compresses learning cycles by summarizing insights and identifying what to explore next. This supports faster iteration on workflows and processes.</p>
+                </div>
+              </div>
+              <div id="detail-6" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> AI can compress learning cycles by summarizing insights, testing ideas quickly, and identifying what to explore next.</p>
+                  <p><strong>How This Helps CX:</strong> This supports faster iteration on workflows, knowledge updates, and process improvements without sacrificing quality or care.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="insight">
+                <div>
+                  <h3>The Goal Is Better Outcomes, Not AI Adoption</h3>
+                  <p>Technology only matters if it improves real experiences. Success looks like lower friction, better coaching, and customers who feel understood.</p>
+                </div>
+              </div>
+              <div id="detail-7" class="detail-content">
+                <div class="card story">
+                  <p><strong>What I Learned:</strong> Technology only matters if it improves real experiences.</p>
+                  <p><strong>How This Helps CX:</strong> In CX, success looks like lower friction, clearer answers, better coaching, and customers who feel understood. AI is a tool in service of those outcomes, not the headline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-nav">
+            <button class="carousel-btn" onclick="prevSlide()">←</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-learn-more" onclick="toggleDetail(currentSlide)">Learn More ↓</button>
+            <button class="carousel-btn" onclick="nextSlide()">→</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="sectionTitle">
+          <h2>📧 Contact Me</h2>
+        </div>
+
+        <div class="card contactCard">
+          <p class="muted" style="margin:0;">
+            Want to talk CX, ops, quality, or scaling support teams? Email works best.
+          </p>
+
+          <div class="contactRow">
+            <a class="pill primary" href="mailto:eric.swasey@gmail.com">Email</a>
+            <a class="pill primary" href="https://www.linkedin.com/in/ericswasey/">LinkedIn</a>
+            <a class="pill primary" href="coming-soon.html">Download Resume (PDF)</a>
+          </div>
+
+          <p class="muted" style="margin:12px 0 0; font-size:13px;">
+            Optional: if you want a contact form like the example site, link a Google Form here.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Eric Swasey. All Rights Reserved.
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Toggle CX Notes detail sections
+    function toggleDetail(index) {
+      const detail = document.getElementById('detail-' + index);
+      if (detail.classList.contains('expanded')) {
+        detail.classList.remove('expanded');
+      } else {
+        detail.classList.add('expanded');
+        detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const totalSlides = 8;
+
+    function initCarousel() {
+      const dotsContainer = document.getElementById('carouselDots');
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      }
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      const container = document.getElementById('carouselContainer');
+      const offset = -currentSlide * 100;
+      container.style.transform = `translateX(${offset}%)`;
+      
+      // Update dots
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+      
+      // Update counter
+      document.getElementById('slideCounter').textContent = currentSlide + 1;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goToSlide(n) {
+      currentSlide = n;
+      updateCarousel();
+    }
+
+    // Initialize carousel on page load
+    document.addEventListener('DOMContentLoaded', initCarousel);
+
+    // Scroll progress indicator
+    const progressBar = document.querySelector('.scrollProgressBar');
+    const avatarCard = document.querySelector('.avatarCard');
+    
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+
+      // Avatar graceful movement to the right when scrolling down
+      const isScrollingDown = scrollTop > lastScrollTop;
+      
+      if (scrollTop > 150) {
+        // Once scrolled past 150px, move photo to fixed position on right
+        avatarCard.style.position = 'fixed';
+        avatarCard.style.top = '100px';
+        avatarCard.style.right = '30px';
+        avatarCard.style.zIndex = '40';
+        avatarCard.style.width = '180px';
+        avatarCard.style.height = '180px';
+      } else {
+        // Return to normal position when near top
+        avatarCard.style.position = 'relative';
+        avatarCard.style.right = 'auto';
+        avatarCard.style.top = 'auto';
+        avatarCard.style.width = 'auto';
+        avatarCard.style.height = 'auto';
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+
+    // Fade in/out based on scroll position
+    function updateScrollFade() {
+      const sections = document.querySelectorAll('section');
+      const windowHeight = window.innerHeight;
+      
+      // Fade sections
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionBottom = rect.bottom;
+        
+        // Calculate opacity based on position in viewport
+        let opacity = 1;
+        
+        // Fade in as element enters from bottom
+        if (sectionTop > windowHeight) {
+          opacity = 0;
+        } else if (sectionTop > windowHeight * 0.8) {
+          opacity = (windowHeight - sectionTop) / (windowHeight * 0.2);
+        }
+        
+        // Fade out as element leaves from top
+        if (sectionBottom < 0) {
+          opacity = 0;
+        } else if (sectionBottom < windowHeight * 0.2) {
+          opacity = sectionBottom / (windowHeight * 0.2);
+        }
+        
+        section.style.opacity = opacity;
+      });
+    }
+    
+    window.addEventListener('scroll', updateScrollFade, { passive: true });
+    updateScrollFade(); // Initial call
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
