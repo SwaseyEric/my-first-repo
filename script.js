@@ -559,19 +559,19 @@ const galleryData = {
         },
         cards: [
             // Text: Problem (Top Left)
-            { type: 'text', title: 'Problem', titleColor: 'orange', content: 'Static surveys have high drop-off rates and low data quality.', x: 20, y: 30, rotate: -2 },
+            { type: 'text', title: 'Problem', titleColor: 'orange', content: 'Static surveys have high drop-off rates and low data quality.', x: 60, y: 18, rotate: -2 },
 
             // Visual: Live Preview (Top Right)
-            { type: 'iframe', src: 'https://survey-pv1.vercel.app', label: 'Live Preview', rotate: 2, x: 70, y: 20 },
+            { type: 'iframe', src: 'https://survey-pv1.vercel.app', label: 'Live Preview', rotate: 2, x: 84, y: 18 },
 
             // Text: Solution (Center Right)
-            { type: 'text', title: 'Solution', content: 'An AI-driven engine that adapts questions based on previous answers.', x: 70, y: 55, rotate: 2 },
+            { type: 'text', title: 'Solution', content: 'An AI-driven engine that adapts questions based on previous answers.', x: 72, y: 48, rotate: 2 },
 
             // Text: Stack (Bottom Left)
-            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · OpenAI API · PostgreSQL', x: 25, y: 75, rotate: -1 },
+            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · OpenAI API · PostgreSQL', x: 60, y: 78, rotate: -1 },
 
             // Video: (Bottom Right)
-            { type: 'video', src: 'pointtaken_backend.mp4', label: 'Backend Flow', rotate: 4, x: 80, y: 80 }
+            { type: 'video', src: 'pointtaken_backend.mp4', label: '', rotate: 4, x: 84, y: 78 }
         ]
     },
     'proj2': { // RoleFit
@@ -582,19 +582,19 @@ const galleryData = {
         },
         cards: [
             // Text: Signal (Top Left)
-            { type: 'text', title: 'Signal', titleColor: 'orange', content: 'Resume data points vs. Job Description requirements.', x: 20, y: 25, rotate: 2 },
+            { type: 'text', title: 'Signal', titleColor: 'orange', content: 'Resume data points vs. Job Description requirements.', x: 60, y: 18, rotate: 2 },
 
             // Visual: Live Preview (Top Right)
-            { type: 'iframe', src: 'https://rolefit-murex.vercel.app', label: 'Live Preview', rotate: -2, x: 75, y: 20 },
+            { type: 'iframe', src: 'https://rolefit-murex.vercel.app', label: 'Live Preview', rotate: -2, x: 84, y: 18 },
 
             // Text: System (Center)
-            { type: 'text', title: 'System', content: 'Vector embeddings match candidates to roles based on semantic meaning.', x: 50, y: 55, rotate: -1 },
+            { type: 'text', title: 'System', content: 'Vector embeddings match candidates to roles based on semantic meaning.', x: 72, y: 48, rotate: -1 },
 
             // Text: Impact (Bottom Left)
-            { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Reduced initial screening time by 60%.', x: 25, y: 80, rotate: 2 },
+            { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Reduced initial screening time by 60%.', x: 60, y: 78, rotate: 2 },
 
             // Visual: Dashboard (Bottom Right)
-            { type: 'image', bg: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)', label: 'Dashboard', rotate: -3, x: 85, y: 75 }
+            { type: 'image', bg: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)', label: 'Dashboard', rotate: -3, x: 84, y: 78 }
         ]
     },
     'proj3': { // DayWell
@@ -604,14 +604,15 @@ const galleryData = {
             meta: 'Mobile App • 2023'
         },
         cards: [
-            // Text: Goal (Top Right)
-            { type: 'text', title: 'Goal', content: 'Help users build consistent wellness habits through micro-actions.', x: 75, y: 25, rotate: 2 },
-
-            // Text: System (Center Left)
-            { type: 'text', title: 'System', titleColor: 'orange', content: 'Personalized nudge engine based on behavioral psychology.', x: 25, y: 50, rotate: -2 },
-
-            // Text: Results (Bottom Center)
-            { type: 'text', title: 'Results', titleColor: 'orange', content: '40% increase in daily active users over 3 months.', x: 50, y: 75, rotate: 1 }
+            // Under Construction GIF
+            {
+                type: 'image',
+                bg: 'url(under-construction.gif)',
+                label: 'Coming Soon',
+                x: 72,
+                y: 50,
+                rotate: 0
+            }
         ]
     },
     'center': { // Eric Swasey
@@ -627,16 +628,16 @@ const galleryData = {
                 titleColor: 'orange', // Accent
                 content: '20+ years leading Customer Experience teams and operational systems.',
                 rotate: -2,
-                x: 20,
-                y: 25
+                x: 60,
+                y: 18
             },
             {
                 type: 'text',
                 title: 'Evolution',
                 content: 'Now building AI-native products that turn signal into structured insight.',
                 rotate: 2,
-                x: 25,
-                y: 70
+                x: 60,
+                y: 78
             },
             {
                 type: 'text',
@@ -644,8 +645,8 @@ const galleryData = {
                 titleColor: 'orange', // Accent
                 content: 'Designing systems that translate feedback into action.',
                 rotate: -1,
-                x: 75,
-                y: 50
+                x: 84,
+                y: 48
             }
         ]
     },
@@ -657,19 +658,19 @@ const galleryData = {
         },
         cards: [
             // Text: Overview (Top Left)
-            { type: 'text', title: 'Overview', titleColor: 'orange', content: 'Send smart prompts. Gather signal. Stay aligned.', x: 20, y: 25, rotate: -2 },
+            { type: 'text', title: 'Overview', titleColor: 'orange', content: 'Send smart prompts. Gather signal. Stay aligned.', x: 60, y: 18, rotate: -2 },
 
             // Visual: Live Preview (Top Right)
-            { type: 'iframe', src: 'https://pingful.vercel.app', label: 'Live Preview', rotate: 2, x: 70, y: 20 },
+            { type: 'iframe', src: 'https://pingful.vercel.app', label: 'Live Preview', rotate: 2, x: 84, y: 18 },
 
             // Text: Audience (Center)
-            { type: 'text', title: 'Audience', content: 'Built for teams, founders, and operators who need fast, meaningful feedback.', x: 45, y: 50, rotate: 1 },
+            { type: 'text', title: 'Audience', content: 'Built for teams, founders, and operators who need fast, meaningful feedback.', x: 72, y: 48, rotate: 1 },
 
             // Text: Stack (Bottom Left)
-            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · Supabase · LLM-powered communication workflows', x: 25, y: 75, rotate: 3 },
+            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · Supabase · LLM-powered communication workflows', x: 60, y: 78, rotate: 3 },
 
             // Visual: Backend Architecture
-            { type: 'image', bg: 'url(backend.webp)', label: 'Backend Architecture', rotate: -3, x: 80, y: 75 }
+            { type: 'image', bg: 'url(backend.webp)', label: 'Backend Architecture', rotate: -3, x: 84, y: 78 }
         ]
     }
 };
@@ -732,21 +733,9 @@ function openProjectPanel(node) {
         return;
     }
 
-    // Render Header
-    const headerEl = document.createElement('div');
-    headerEl.classList.add('gallery-header');
-
-    let titleHtml = `<h2>${data.header.title}</h2>`;
-    if (data.header.url) {
-        titleHtml = `<h2><a href="${data.header.url}" target="_blank" rel="noopener noreferrer" class="project-link">${data.header.title}</a></h2>`;
-    }
-
-    headerEl.innerHTML = `
-        ${titleHtml}
-        ${data.header.subtitle ? `<p>${data.header.subtitle}</p>` : ''}
-        ${data.header.meta ? `<span class="meta">${data.header.meta}</span>` : ''}
-    `;
-    panelContent.appendChild(headerEl);
+    // Header Removed per user request
+    // const headerEl = document.createElement('div'); ...
+    // panelContent.appendChild(headerEl);
 
     // Render Gallery Container
     const galleryContainer = document.createElement('div');
