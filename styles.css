@@ -1,424 +1,1046 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
+/* ==========================================================================
+   System Map Theme - Dark Mode First
+   ========================================================================== */
 :root {
-  --navy: #14213d;
-  --dark: #0f172a;
-  --gray: #6c757d;
-  --light-gray: #f5f5f5;
-  --black: #181818;
-  --white: #ffffff;
-  --accent: #00ffe7;
-  --accent-dark: #00d4c9;
+    --bg-deep: #0B0F14;
+    --text-primary: #E5E7EB;
+    --text-secondary: #9CA3AF;
+    --accent-blue: #4F7CFF;
+    --line-color: rgba(255, 255, 255, 0.1);
+    --node-bg: #0B0F14;
+    --panel-bg: rgba(11, 15, 20, 0.85);
+
+    --font-ui: 'Inter', sans-serif;
+    --font-heading: 'Inter Tight', sans-serif;
+
+    /* Card Theme (Dark Default) */
+    --card-bg: #161B22;
+    --card-text: #E5E7EB;
+    --card-title: #9CA3AF;
+    --card-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+    --bg-deep: #F3F4F6;
+    --text-primary: #111827;
+    --text-secondary: #4B5563;
+    --accent-blue: #2563EB;
+    /* Slightly darker blue for contrast */
+    --line-color: rgba(0, 0, 0, 0.4);
+    /* Substantially increased visibility */
+    --node-bg: #FFFFFF;
+    --panel-bg: rgba(255, 255, 255, 0.9);
+    --text-inverse: #FFFFFF;
+    /* Text on dark backgrounds in light mode */
+
+    /* Card Theme (Light) */
+    --card-bg: #FFFFFF;
+    --card-text: #111111;
+    --card-title: #6B7280;
+    --card-border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: transparent;
+    border: 1px solid var(--line-color);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--text-primary);
+    color: var(--bg-deep);
+    transform: rotate(15deg);
+}
+
+body.light-mode .theme-toggle:hover {
+    color: var(--text-inverse);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background: var(--dark);
-  color: var(--white);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    overflow: hidden;
+    /* Prevent scroll on hero */
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    /* Smooth Theme Switch */
 }
 
-header {
-  background: var(--navy);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
 }
 
-.navbar {
-  padding: 1.5rem 0;
+/* ==========================================================================
+   Hero Layout
+   ========================================================================== */
+.hero-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Left Content */
+.hero-content {
+    flex: 0 0 40%;
+    /* 40% width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 8%;
+    padding-right: 4%;
+    z-index: 10;
+    /* Ensure on top for interactions */
+    position: relative;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 1px;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
 
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
+.role {
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    color: var(--text-primary);
+    white-space: nowrap;
+    /* Prevent glitchy wrapping during scramble */
 }
 
-.nav-menu a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+/* Responsive adjustments for smaller heights/laptops */
+@media (max-width: 1400px),
+(max-height: 800px) {
+    .role {
+        font-size: 36px;
+        margin-bottom: 16px;
+    }
+
+    .profile-video-container {
+        max-width: 350px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
 }
 
-.nav-menu a:hover {
-  color: var(--accent);
+.subline {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 400px;
 }
 
-main {
-  flex: 1;
-  width: 100%;
+/* Right Content: System Map Container */
+.system-map-container {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    perspective: 1000px;
+    /* 3D Space for Parallax */
+    cursor: grab;
 }
 
-.hero {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
-  padding: 6rem 2rem;
-  text-align: center;
-  color: var(--white);
+.system-map-container:active {
+    cursor: grabbing;
 }
 
-.hero-content h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--accent);
-  letter-spacing: -1px;
+#system-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* Children exist in 3D */
+    transition: transform 0.1s ease-out;
+    /* Smooth parallax */
 }
 
-.hero-content p {
-  font-size: 1.25rem;
-  color: var(--light-gray);
-  max-width: 600px;
-  margin: 0 auto;
-  font-weight: 300;
+/* ==========================================================================
+   System Map Nodes & Connections
+   ========================================================================== */
+.connections-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.section {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  width: 100%;
+.connection-line {
+    stroke: var(--line-color);
+    stroke-width: 1px;
+    transition: stroke 0.3s, stroke-opacity 0.3s;
 }
 
-.section h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2.5rem;
-  color: var(--white);
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
+.node {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* Center on coordinate */
+    background: var(--node-bg);
+    border: 1px solid var(--line-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
 }
 
-.story-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--light-gray);
+.node span {
+    pointer-events: none;
 }
 
-.story-content p {
-  margin-bottom: 1.5rem;
+/* Center Node */
+.center-node {
+    width: 160px;
+    height: 160px;
+    border-color: rgba(255, 255, 255, 0.2);
+    z-index: 5;
+    font-family: var(--font-heading);
+    overflow: hidden;
+    /* Clip image to circle */
+    background: #000;
+    /* Fallback */
 }
 
-.expertise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+.center-node.has-image {
+    padding: 0;
+    /* Remove any default padding */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    /* Slightly stronger border */
+    position: relative;
+    /* For overlay */
 }
 
-.expertise-card {
-  background: rgba(0, 255, 231, 0.05);
-  border: 1px solid var(--accent);
-  border-radius: 8px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+.center-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
 }
 
-.expertise-card:hover {
-  background: rgba(0, 255, 231, 0.1);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 255, 231, 0.1);
+.center-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.expertise-card h3 {
-  color: var(--accent);
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+.dud {
+    color: #757575;
 }
 
-.expertise-card p {
-  color: var(--light-gray);
+.center-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    /* Let clicks pass to node */
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+body.light-mode .center-node {
+    border-color: rgba(0, 0, 0, 0.3);
 }
 
-.project-card {
-  background: rgba(20, 33, 61, 0.4);
-  border: 1px solid rgba(0, 255, 231, 0.2);
-  border-radius: 8px;
-  padding: 2rem;
-  transition: all 0.3s ease;
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center align items */
+    gap: 4px;
 }
 
-.project-card:hover {
-  background: rgba(20, 33, 61, 0.6);
-  border-color: var(--accent);
-  box-shadow: 0 8px 16px rgba(0, 255, 231, 0.1);
+.center-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
-.project-card h3 {
-  color: var(--white);
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+/* Profile Video in Hero */
+.profile-video-container {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: none;
+    background: transparent;
 }
 
-.project-type {
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
+.profile-video-container video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: multiply;
+    /* Blends white background */
 }
 
-.project-card p {
-  color: var(--light-gray);
-  margin-bottom: 1rem;
+.center-title {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-.certs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* Capability Nodes (Inner Ring) */
+.capability-node {
+    width: 120px;
+    height: 120px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    padding: 10px;
+    line-height: 1.3;
 }
 
-.cert-item {
-  background: rgba(0, 255, 231, 0.05);
-  border-left: 4px solid var(--accent);
-  padding: 1.5rem;
-  border-radius: 4px;
+/* Project Nodes (Outer Ring) */
+.project-node {
+    width: 140px;
+    /* Slightly oblong handled via JS or CSS if needed, staying circle for now */
+    height: 40px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #151920;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: white;
+    /* Always white in dark node */
 }
 
-.cert-item h3 {
-  font-size: 1.1rem;
-  color: var(--white);
-  margin-bottom: 0.5rem;
+body.light-mode .project-node {
+    background: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-primary);
 }
 
-.cert-item p {
-  color: var(--light-gray);
-  margin-bottom: 0.5rem;
+.project-node:hover {
+    border-color: var(--accent-blue);
+    background: #1A1F29;
+    color: white;
+    box-shadow: 0 0 15px rgba(79, 124, 255, 0.2);
+    z-index: 10;
 }
 
-.cert-item .date {
-  font-size: 0.9rem;
-  color: var(--accent);
-  font-weight: 600;
+body.light-mode .project-node:hover {
+    background: #F3F4F6;
+    color: var(--accent-blue);
 }
 
-.contact-section {
-  text-align: center;
+/* Hover States */
+.system-map-container.has-hover .node {
+    opacity: 0.2;
+    /* Dim everyone */
 }
 
-.contact-section p {
-  font-size: 1.1rem;
-  color: var(--light-gray);
-  margin: 1.5rem 0 2rem 0;
+.system-map-container.has-hover .node.highlight {
+    opacity: 1;
+    /* Undim highlighted */
+    border-color: var(--accent-blue);
 }
 
-.contact-links {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+.system-map-container.has-hover .connection-line {
+    opacity: 0.1;
+    transition: opacity 0.3s;
 }
 
-.contact-btn {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background: var(--accent);
-  color: var(--dark);
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 2px solid var(--accent);
+.system-map-container.has-hover .connection-line.highlight {
+    opacity: 1;
+    stroke: var(--accent-blue);
+    stroke-width: 3px;
+    /* Example: thicker beam */
+    stroke-dasharray: 100 1000;
+    /* Short dash, long gap */
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 4px var(--accent-blue));
+    /* Glow effect */
+    animation: dataPulse 2s linear infinite;
 }
 
-.contact-btn:hover {
-  background: transparent;
-  color: var(--accent);
+@keyframes dataPulse {
+    to {
+        stroke-dashoffset: -1100;
+        /* Move past the gap */
+    }
 }
 
-footer {
-  background: var(--navy);
-  color: var(--gray);
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  letter-spacing: 0.5px;
-  margin-top: auto;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+/* ==========================================================================
+   Project Detail Panel
+   ========================================================================== */
+/* ==========================================================================
+   Project Detail Panel (Scattered Gallery Drawer)
+   ========================================================================== */
+.project-detail-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 600px;
+    /* Desktop width */
+    max-width: 100%;
+    height: 100vh;
+    background: transparent;
+    /* Removed solid background */
+    /* border-left: 1px solid rgba(255, 255, 255, 0.1); */
+    /* Removed border */
+    transform: translateX(101%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5); */
+    /* Removed shadow */
+    overflow: hidden;
+    pointer-events: none;
+    /* Let clicks pass through the empty area */
 }
 
-.carousel-container {
-  width: 100%;
-  max-width: 900px;
-  margin: 2rem auto;
-  position: relative;
+/* We need to re-enable pointer events on children */
+.panel-content,
+.panel-header {
+    pointer-events: auto;
 }
 
-.carousel-controls-inline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+body.light-mode .project-detail-panel {
+    background: transparent;
+    border-left: none;
 }
 
-.carousel-controls-inline button {
-  background: var(--navy);
-  color: var(--white);
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.project-detail-panel.open {
+    transform: translateX(0);
 }
 
-.carousel-controls-inline button:hover {
-  background: var(--accent);
-  color: var(--black);
+/* Panel Header */
+.panel-header {
+    padding: 24px;
+    display: flex;
+    justify-content: flex-end;
+    /* Or flex-start if button is separate */
+    z-index: 10;
+    pointer-events: none;
+    /* Let clicks pass */
 }
 
-.carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-  scroll-behavior: smooth;
-  padding: 1rem 0;
-  position: relative;
-  min-width: 630px;
-  min-height: 360px;
+.close-btn {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 44px;
+    /* Slightly larger touch target */
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: visible;
 }
 
-.slide {
-  background: var(--gray);
-  color: var(--white);
-  border-radius: 18px;
-  min-width: 630px;
-  min-height: 360px;
-  max-width: 720px;
-  box-shadow: 0 4px 24px rgba(20,33,61,0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0.85);
-  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s, border 0.3s, z-index 0.3s;
-  border: 2px solid transparent;
-  cursor: pointer;
-  overflow: hidden;
-  opacity: 0.7;
-  z-index: 1;
+/* Close Segments */
+.close-btn .seg {
+    position: absolute;
+    width: 14px;
+    /* Length of one arm */
+    height: 2px;
+    background-color: #E5E7EB;
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+    top: 50%;
+    margin-top: -1px;
+    /* Exact center Y */
 }
 
-.slide.selected {
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 16px 4px var(--accent), 0 8px 32px rgba(0,0,0,0.25);
-  transform: translate(-50%, -60%) scale(1.08);
-  opacity: 1;
-  z-index: 3;
+/* 
+   QUADRANT LOGIC:
+   We anchor the "inner" end of each segment to the exact center of the button.
+   TL/BL: inner end is Right.
+   TR/BR: inner end is Left.
+*/
+
+/* TL: Left side, points NW */
+.close-btn .seg-tl {
+    right: 50%;
+    /* Right edge at center */
+    transform-origin: 100% 50%;
+    /* Pivot on right edge */
+    transform: rotate(45deg);
+    /* Points NW because origin is right */
 }
 
-.slide:hover {
-  transform: translate(-50%, -70%) scale(1.12) rotate(-2deg);
-  box-shadow: 0 0 24px 6px var(--accent), 0 12px 40px rgba(0,0,0,0.30);
-  border: 2px solid var(--accent);
-  z-index: 4;
-  opacity: 1;
+/* BL: Left side, points SW */
+.close-btn .seg-bl {
+    right: 50%;
+    transform-origin: 100% 50%;
+    transform: rotate(-45deg);
+    /* Points SW */
 }
 
-.slide img {
-  max-width: 600px;
-  max-height: 330px;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
+/* TR: Right side, points NE */
+.close-btn .seg-tr {
+    left: 50%;
+    /* Left edge at center */
+    transform-origin: 0% 50%;
+    /* Pivot on left edge */
+    transform: rotate(-45deg);
+    /* Points NE */
 }
 
-.slide .slide-text {
-  padding: 0.5rem 1rem;
-  text-align: center;
-  font-size: 1.1rem;
-  word-break: break-word;
+/* BR: Right side, points SE */
+.close-btn .seg-br {
+    left: 50%;
+    transform-origin: 0% 50%;
+    transform: rotate(45deg);
+    /* Points SE */
 }
 
-.carousel-controls-bottom {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.2rem;
-}
-.carousel-controls-bottom button {
-  background: var(--navy);
-  color: var(--white);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-.carousel-controls-bottom button:hover {
-  background: var(--accent);
-  color: var(--black);
+/* Exploded State */
+/* Translate moves distinct from rotation in this context? 
+   No, transform order matters. 
+   If we want to move "outward", we can just use translate(dx, dy) in the rotated frame 
+   (along the line).
+   TL (NW): move -x?
+*/
+
+.close-btn.exploded .seg-tl {
+    transform: rotate(45deg) translate(-5px, 0);
 }
 
-footer {
-  background: var(--navy);
-  color: var(--gray);
-  text-align: center;
-  padding: 1.2rem 0 1.2rem 0;
-  font-size: 1rem;
-  letter-spacing: 1px;
-  margin-top: auto;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+.close-btn.exploded .seg-bl {
+    transform: rotate(-45deg) translate(-5px, 0);
 }
 
-.upload-section {
-  margin: 1.5rem auto 0 auto;
-  text-align: center;
+.close-btn.exploded .seg-tr {
+    transform: rotate(-45deg) translate(5px, 0);
 }
 
-.upload-section input[type="file"] {
-  margin-top: 0.5rem;
-  color: var(--white);
+.close-btn.exploded .seg-br {
+    transform: rotate(45deg) translate(5px, 0);
 }
+
+body.light-mode .close-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .close-btn .seg {
+    background-color: #111;
+}
+
+/* Interaction */
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    border-color: #4F7CFF;
+}
+
+.close-btn:hover .seg {
+    background-color: #4F7CFF;
+}
+
+body.light-mode .close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+body.light-mode .close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Scrollbar */
+.project-detail-panel {
+    scrollbar-width: none;
+}
+
+/* Feedback Input */
+#feedback-container {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+#feedback-container:focus-within {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%) translateY(-2px);
+}
+
+#feedback-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+#feedback-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.enter-hint {
+    font-size: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.6;
+}
+
+/* Light Mode Overrides for Feedback */
+body.light-mode #feedback-container {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #feedback-container:focus-within {
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Links */
+#social-links {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+}
+
+#social-links a {
+    color: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#social-links a:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+body.light-mode #social-links a {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+body.light-mode #social-links a:hover {
+    color: var(--text-primary);
+}
+
+
+.panel-content {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Ensure it takes up space so children position correctly */
+}
+
+/* Gallery Cards */
+.gallery-card {
+    position: absolute;
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 24px;
+    /* Soft but deep shadow for "float" */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: var(--card-text);
+    width: 240px;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: grab;
+    user-select: none;
+    border: var(--card-border);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    /* Transition handled in JS for spring pop, but we keep box-shadow transition here */
+    will-change: transform, opacity;
+
+    /* Ensure transform-origin is center for wiggle */
+    transform-origin: center center;
+}
+
+@keyframes pendulumWiggle {
+    0% {
+        transform: translate(-50%, -50%) rotate(calc(var(--rot) - 2deg)) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(calc(var(--rot) + 2deg)) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(calc(var(--rot) - 2deg)) scale(1);
+    }
+}
+
+.gallery-card.wiggle {
+    animation: pendulumWiggle 6s ease-in-out infinite;
+}
+
+.gallery-card:active {
+    cursor: grabbing;
+}
+
+/* Card Variants */
+.gallery-card .card-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--card-title);
+    /* Muted gray */
+    margin-bottom: 8px;
+    display: block;
+}
+
+.gallery-card.is-visual {
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    /* For rounded corners on bg */
+    width: 280px;
+    /* Bit wider for images */
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+/* Optional label inside visual card */
+.img-label {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin: 12px;
+    backdrop-filter: blur(4px);
+}
+
+.card-text {
+    width: 220px;
+}
+
+.card-metric {
+    width: 180px;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.panel-content::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    /* Cards area */
+    pointer-events: none;
+    /* Container passes clicks, cards catch them */
+}
+
+.gallery-header {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    z-index: 20;
+    /* Title above cards initially? or below? */
+    /* User said "active card rises to top". So cards > header. */
+    /* If cards are z-index: 10 (base), header z-index: 5 is fine. */
+    /* Let's set header low. */
+    z-index: 5;
+    pointer-events: none;
+    color: white;
+    max-width: 80%;
+    padding-top: 80px;
+    /* Push down below close button area */
+}
+
+.gallery-header h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.02em;
+}
+
+.gallery-header p {
+    font-size: 16px;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    font-weight: 300;
+}
+
+.gallery-header .meta {
+    font-size: 12px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+}
+
+body.light-mode .panel-content {
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Framework Tooltip */
+.framework-tooltip {
+    position: fixed;
+    width: 300px;
+    background: var(--card-bg);
+    border: var(--card-border);
+    color: var(--card-text);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    /* Initial */
+}
+
+.framework-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.framework-tooltip h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--card-text);
+}
+
+.framework-tooltip p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.framework-tooltip ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.framework-tooltip li {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 4px;
+    position: relative;
+    padding-left: 12px;
+}
+
+.framework-tooltip li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+}
+
+/* Webkit Scrollbar Styling */
+.panel-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+body.light-mode .panel-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+body.light-mode .panel-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#panel-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: var(--accent-blue);
+}
+
+.panel-sections {
+    display: grid;
+    gap: 40px;
+}
+
+.section h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.section p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+/* Tag Cloud in Panel */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-cloud span {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .tag-cloud span {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: simpleFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+@keyframes simpleFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Project Link */
+.project-link {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    /* CRITICAL: Enable clicking despite parent having none */
+    position: relative;
+    /* Ensure z-index works if needed */
+    z-index: 20;
+}
+
+.project-link:hover {
+    color: #4F7CFF;
+}
+
+body.light-mode .project-link {
+    border-bottom: none;
+    /* Explicitly remove border */
+}
+
+body.light-mode .project-link:hover {
+    color: #4F7CFF;
+}
+
+/* Media Queries */

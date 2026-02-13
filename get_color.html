@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <canvas id="c"></canvas>
+    <div id="output">Loading...</div>
+    <script>
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.src = "portfolio-speed.gif";
+        img.onload = function () {
+            const c = document.getElementById('c');
+            const ctx = c.getContext('2d');
+            c.width = img.width;
+            c.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            const p = ctx.getImageData(0, 0, 1, 1).data;
+            const hex = "#" + ("000000" + rgbToHex(p[0], p[1], p[2])).slice(-6);
+            document.getElementById('output').innerText = "BG_COLOR: " + hex.toUpperCase();
+        }
+
+        function rgbToHex(r, g, b) {
+            if (r > 255 || g > 255 || b > 255)
+                throw "Invalid color component";
+            return ((r << 16) | (g << 8) | b).toString(16);
+        }
+    </script>
+</body>
+
+</html>
