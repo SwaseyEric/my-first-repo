@@ -16,7 +16,8 @@
     /* Card Theme (Dark Default) */
     --card-bg: #161B22;
     --card-text: #E5E7EB;
-    --card-title: #9CA3AF;
+    --card-title: #4F7CFF;
+    /* Electric Blue Accent */
     --card-border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -37,7 +38,8 @@ body.light-mode {
     /* Card Theme (Light) */
     --card-bg: #FFFFFF;
     --card-text: #111111;
-    --card-title: #6B7280;
+    --card-title: #2563EB;
+    /* Blue Accent */
     --card-border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
