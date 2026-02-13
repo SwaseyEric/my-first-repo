@@ -24,7 +24,7 @@
 
 /* Light Mode Overrides */
 body.light-mode {
-    --bg-deep: #F3F4F6;
+    --bg-deep: #CFCFCF;
     --text-primary: #111827;
     --text-secondary: #4B5563;
     --accent-blue: #2563EB;
@@ -176,6 +176,9 @@ h4 {
     perspective: 1000px;
     /* 3D Space for Parallax */
     cursor: grab;
+    /* Blend edges into background */
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
 }
 
 .system-map-container:active {
