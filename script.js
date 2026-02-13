@@ -554,69 +554,77 @@ const galleryData = {
     'proj1': { // PointTaken
         header: {
             title: 'PointTaken',
-            url: 'https://survey-pv1.vercel.app'
+            subtitle: 'Intelligent survey engine.',
+            meta: 'Prototype • 2024'
         },
         cards: [
-            // Text: Overview (Top Left)
-            { type: 'text', title: 'Overview', content: 'Build surveys. Analyze responses. Act faster.', x: 20, y: 25, rotate: -2 },
+            // Text: Problem (Top Left)
+            { type: 'text', title: 'Problem', titleColor: 'orange', content: 'Static surveys have high drop-off rates and low data quality.', x: 20, y: 30, rotate: -2 },
 
             // Visual: Live Preview (Top Right)
             { type: 'iframe', src: 'https://survey-pv1.vercel.app', label: 'Live Preview', rotate: 2, x: 70, y: 20 },
 
-            // Text: Audience (Center)
-            { type: 'text', title: 'Audience', content: 'Built for consultants, CX leaders, and teams who rely on qualitative feedback.', x: 45, y: 50, rotate: 1 },
+            // Text: Solution (Center Right)
+            { type: 'text', title: 'Solution', content: 'An AI-driven engine that adapts questions based on previous answers.', x: 70, y: 55, rotate: 2 },
 
             // Text: Stack (Bottom Left)
-            { type: 'text', title: 'Stack', content: 'Next.js · Supabase · LLM-powered qualitative analysis', x: 25, y: 75, rotate: 3 },
+            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · OpenAI API · PostgreSQL', x: 25, y: 75, rotate: -1 },
 
             // Video: (Bottom Right)
-            { type: 'video', src: 'pointtaken_backend.mp4', rotate: 4, x: 75, y: 70 }
+            { type: 'video', src: 'pointtaken_backend.mp4', label: 'Backend Flow', rotate: 4, x: 80, y: 80 }
         ]
     },
     'proj2': { // RoleFit
         header: {
             title: 'RoleFit',
-            subtitle: 'AI-driven candidate screening.',
-            meta: 'Python • 2023'
+            subtitle: 'Semantic candidate matching.',
+            meta: 'Internal Tool • 2023'
         },
         cards: [
-            // Text: Overview (Top Left)
-            { type: 'text', title: 'Overview', content: 'Align your resume. Match the role. Get noticed.', x: 20, y: 25, rotate: -2 },
+            // Text: Signal (Top Left)
+            { type: 'text', title: 'Signal', titleColor: 'orange', content: 'Resume data points vs. Job Description requirements.', x: 20, y: 25, rotate: 2 },
 
             // Visual: Live Preview (Top Right)
-            { type: 'iframe', src: 'https://rolefit-murex.vercel.app', label: 'Live Preview', rotate: 2, x: 70, y: 20 },
+            { type: 'iframe', src: 'https://rolefit-murex.vercel.app', label: 'Live Preview', rotate: -2, x: 75, y: 20 },
 
-            // Text: Audience (Center)
-            { type: 'text', title: 'Audience', content: 'Built for job seekers who feel overlooked and want their experience to stand out.', x: 45, y: 50, rotate: 1 },
+            // Text: System (Center)
+            { type: 'text', title: 'System', content: 'Vector embeddings match candidates to roles based on semantic meaning.', x: 50, y: 55, rotate: -1 },
 
-            // Text: Stack (Bottom Left)
-            { type: 'text', title: 'Stack', content: 'Next.js · Supabase · LLM-powered resume analysis', x: 25, y: 75, rotate: 3 },
+            // Text: Impact (Bottom Left)
+            { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Reduced initial screening time by 60%.', x: 25, y: 80, rotate: 2 },
 
             // Visual: Dashboard (Bottom Right)
-            { type: 'image', bg: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)', label: 'Dashboard', rotate: -3, x: 80, y: 75 }
+            { type: 'image', bg: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)', label: 'Dashboard', rotate: -3, x: 85, y: 75 }
         ]
     },
     'proj3': { // DayWell
         header: {
             title: 'DayWell',
-            subtitle: 'Habit formation engine.',
-            meta: 'React Native • 2024'
+            subtitle: 'Habit formation companion.',
+            meta: 'Mobile App • 2023'
         },
         cards: [
-            // Construction GIF
-            { type: 'image', bg: 'url(under-construction.gif)', label: 'Coming Soon', rotate: 0, x: 50, y: 50 }
+            // Text: Goal (Top Right)
+            { type: 'text', title: 'Goal', content: 'Help users build consistent wellness habits through micro-actions.', x: 75, y: 25, rotate: 2 },
+
+            // Text: System (Center Left)
+            { type: 'text', title: 'System', titleColor: 'orange', content: 'Personalized nudge engine based on behavioral psychology.', x: 25, y: 50, rotate: -2 },
+
+            // Text: Results (Bottom Center)
+            { type: 'text', title: 'Results', titleColor: 'orange', content: '40% increase in daily active users over 3 months.', x: 50, y: 75, rotate: 1 }
         ]
     },
     'center': { // Eric Swasey
         header: {
             title: 'Eric Swasey',
-            subtitle: 'AI Systems Builder.',
+            subtitle: 'AI Systems Builder',
             meta: 'Brooklyn, NY'
         },
         cards: [
             {
                 type: 'text',
                 title: 'Experience',
+                titleColor: 'orange', // Accent
                 content: '20+ years leading Customer Experience teams and operational systems.',
                 rotate: -2,
                 x: 20,
@@ -633,6 +641,7 @@ const galleryData = {
             {
                 type: 'text',
                 title: 'Focus',
+                titleColor: 'orange', // Accent
                 content: 'Designing systems that translate feedback into action.',
                 rotate: -1,
                 x: 75,
@@ -648,7 +657,7 @@ const galleryData = {
         },
         cards: [
             // Text: Overview (Top Left)
-            { type: 'text', title: 'Overview', content: 'Send smart prompts. Gather signal. Stay aligned.', x: 20, y: 25, rotate: -2 },
+            { type: 'text', title: 'Overview', titleColor: 'orange', content: 'Send smart prompts. Gather signal. Stay aligned.', x: 20, y: 25, rotate: -2 },
 
             // Visual: Live Preview (Top Right)
             { type: 'iframe', src: 'https://pingful.vercel.app', label: 'Live Preview', rotate: 2, x: 70, y: 20 },
@@ -657,7 +666,7 @@ const galleryData = {
             { type: 'text', title: 'Audience', content: 'Built for teams, founders, and operators who need fast, meaningful feedback.', x: 45, y: 50, rotate: 1 },
 
             // Text: Stack (Bottom Left)
-            { type: 'text', title: 'Stack', content: 'Next.js · Supabase · LLM-powered communication workflows', x: 25, y: 75, rotate: 3 },
+            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · Supabase · LLM-powered communication workflows', x: 25, y: 75, rotate: 3 },
 
             // Visual: Backend Architecture
             { type: 'image', bg: 'url(backend.webp)', label: 'Backend Architecture', rotate: -3, x: 80, y: 75 }
@@ -779,11 +788,30 @@ function createGalleryCard(data, index) {
     if (data.type === 'text' || data.type === 'quote') {
         let contentHtml = '';
         if (data.title) {
-            contentHtml += `<div class="card-title">${data.title}</div>`;
+            // Add custom color class if specified
+            const colorClass = data.titleColor === 'orange' ? ' text-orange' : '';
+            contentHtml += `<div class="card-title${colorClass}">${data.title}</div>`;
         }
         contentHtml += `<p>${data.content}</p>`;
         if (data.author) contentHtml += `<span class="author">— ${data.author}</span>`;
         card.innerHTML = contentHtml;
+
+        // Initialize Scramble for Title AFTER adding to DOM
+        if (data.title) {
+            setTimeout(() => {
+                const titleEl = card.querySelector('.card-title');
+                if (titleEl) {
+                    const fx = new TextScramble(titleEl);
+                    fx.setText(data.title);
+
+                    // Optional: Scramble on hover too
+                    card.addEventListener('mouseenter', () => {
+                        fx.setText(data.title);
+                    });
+                }
+            }, 500 + (index * 100)); // Stagger slightly after pop animation
+        }
+
     } else if (data.type === 'metric') {
         card.innerHTML = `<div class="value">${data.value}</div><div class="label">${data.label}</div>`;
     } else if (data.type === 'iframe') {

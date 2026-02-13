@@ -19,6 +19,7 @@
     --card-title: #4F7CFF;
     /* Electric Blue Accent */
     --card-border: 1px solid rgba(255, 255, 255, 0.1);
+    --accent-orange: #FF6B00;
 }
 
 /* Light Mode Overrides */
@@ -41,6 +42,7 @@ body.light-mode {
     --card-title: #2563EB;
     /* Blue Accent */
     --card-border: 1px solid rgba(0, 0, 0, 0.05);
+    --accent-orange: #EA580C;
 }
 
 /* Theme Toggle Button */
@@ -767,9 +769,13 @@ body.light-mode #social-links a:hover {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--card-title);
-    /* Muted gray */
+    /* Muted gray / Blue Accent */
     margin-bottom: 8px;
     display: block;
+}
+
+.gallery-card .card-title.text-orange {
+    color: var(--accent-orange);
 }
 
 .gallery-card.is-visual {
