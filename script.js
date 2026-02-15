@@ -593,8 +593,8 @@ const galleryData = {
             // Text: Impact (Bottom Left)
             { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Reduced initial screening time by 60%.', x: 60, y: 78, rotate: 2 },
 
-            // Visual: Dashboard (Bottom Right)
-            { type: 'image', bg: 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)', label: 'Dashboard', rotate: -3, x: 84, y: 78 }
+            // Visual: Demo Video (Bottom Right)
+            { type: 'video', src: 'Demo.mp4', label: 'Demo', rotate: -3, x: 84, y: 78 }
         ]
     },
     'proj3': { // DayWell
