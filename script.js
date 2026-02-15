@@ -594,7 +594,7 @@ const galleryData = {
             { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Reduced initial screening time by 60%.', x: 60, y: 78, rotate: 2 },
 
             // Visual: Demo Video (Bottom Right)
-            { type: 'video', src: 'Demo.mp4', label: 'Demo', rotate: -3, x: 84, y: 78 }
+            { type: 'video', src: 'Demo.mp4', label: '', rotate: -3, x: 84, y: 78 }
         ]
     },
     'proj3': { // DayWell
@@ -839,8 +839,10 @@ function createGalleryCard(data, index) {
                 width: 100%; 
                 height: 100%; 
                 object-fit: cover; 
-                border-radius: 18px; /* Match card radius if needed, or rely on overflow: hidden */
+                border-radius: 18px;
                 display: block;
+                transform: scale(1.2);
+                transform-origin: center center;
             "></video>
          `;
         if (data.label) {
