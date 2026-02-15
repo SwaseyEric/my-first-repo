@@ -839,10 +839,10 @@ function createGalleryCard(data, index) {
         card.innerHTML = `
             <video src="${data.src}" autoplay loop muted playsinline style="
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%; 
-                height: 100%; 
+                top: -20%;
+                left: -20%;
+                width: 140%; 
+                height: 140%; 
                 object-fit: cover; 
                 display: block;
             "></video>
