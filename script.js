@@ -834,15 +834,17 @@ function createGalleryCard(data, index) {
         }
     } else if (data.type === 'video') {
         card.classList.add('is-visual');
+        card.style.overflow = 'hidden';
+        card.style.padding = '0';
         card.innerHTML = `
             <video src="${data.src}" autoplay loop muted playsinline style="
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%; 
                 height: 100%; 
                 object-fit: cover; 
-                border-radius: 18px;
                 display: block;
-                transform: scale(1.2);
-                transform-origin: center center;
             "></video>
          `;
         if (data.label) {
