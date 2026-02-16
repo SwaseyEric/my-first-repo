@@ -1196,12 +1196,12 @@ body.light-mode .btn-secondary:hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    /* Removed min-width/height to allow letterboxing if needed */
+    width: 100%;
+    height: 100%;
     transform: translate(-50%, -50%);
-    object-fit: cover;
+    object-fit: contain;
+    /* Ensures full image is visible */
     filter: brightness(0.6);
     /* darken slightly for text readability */
 }
