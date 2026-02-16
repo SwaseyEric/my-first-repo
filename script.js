@@ -256,7 +256,7 @@ function initSystemMap() {
         // Content
         // Content
         if (node.type === 'center') {
-            el.innerHTML = `<img src="cubicle.png" alt="${node.label}" class="center-img">`;
+            el.innerHTML = `<img src="headshot2.webp" alt="${node.label}" class="center-img">`;
             el.classList.add('has-image');
             // Click to go back to landing page
             el.style.cursor = 'pointer';
