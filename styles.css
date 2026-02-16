@@ -1174,6 +1174,9 @@ body.light-mode .btn-secondary:hover {
 /* ==========================================================================
    Landing Page (Video)
    ========================================================================== */
+/* ==========================================================================
+   Landing Page (Video)
+   ========================================================================== */
 #landing-page {
     position: fixed;
     top: 0;
@@ -1181,7 +1184,8 @@ body.light-mode .btn-secondary:hover {
     width: 100vw;
     height: 100vh;
     z-index: 5000;
-    background-color: #000;
+    background-color: #FFFFFF;
+    /* White background to match video */
     overflow: hidden;
     transition: opacity 1s ease, visibility 1s ease;
 }
@@ -1202,8 +1206,7 @@ body.light-mode .btn-secondary:hover {
     transform: translate(-50%, -50%);
     object-fit: contain;
     /* Ensures full image is visible */
-    filter: brightness(0.6);
-    /* darken slightly for text readability */
+    /* filter: brightness(0.6); REMOVED for seamless white look */
 }
 
 .landing-overlay {
@@ -1213,7 +1216,8 @@ body.light-mode .btn-secondary:hover {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 2;
-    color: white;
+    color: #111827;
+    /* Dark text */
     width: 100%;
     padding: 20px;
 }
@@ -1223,15 +1227,17 @@ body.light-mode .btn-secondary:hover {
     font-weight: 700;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); REMOVED */
     opacity: 0;
     animation: simpleFade 1s 0.5s forwards;
+    color: #000000;
 }
 
 .landing-subtitle {
     font-size: 1.5rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.6);
+    /* Dark grey */
     margin-bottom: 3rem;
     opacity: 0;
     animation: simpleFade 1s 1s forwards;
@@ -1239,9 +1245,11 @@ body.light-mode .btn-secondary:hover {
 
 .landing-btn {
     padding: 14px 32px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.05);
+    /* Light grey background */
+    color: #000000;
+    /* Dark text */
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50px;
     font-size: 1rem;
     font-weight: 500;
@@ -1256,7 +1264,8 @@ body.light-mode .btn-secondary:hover {
 }
 
 .landing-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    /* Slightly darker on hover */
     transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.2);
 }
