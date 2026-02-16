@@ -953,6 +953,11 @@ function makeGalleryDraggable(card, rotation) {
     let initialLeft, initialTop;
 
     card.addEventListener('mousedown', (e) => {
+        // Allow links to function normally without initiating drag
+        if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+        }
+
         isDragging = true;
         startX = e.clientX;
         startY = e.clientY;
