@@ -562,7 +562,7 @@ const galleryData = {
             { type: 'text', title: 'Problem', titleColor: 'orange', content: 'Static surveys have high drop-off rates and low data quality.', x: 60, y: 18, rotate: -2 },
 
             // Visual: Live Preview (Top Right)
-            { type: 'iframe', src: 'https://survey-pv1.vercel.app', label: 'Live Preview', rotate: 2, x: 84, y: 18 },
+            { type: 'iframe', src: 'https://survey-pv1.vercel.app', label: 'Live Preview', rotate: 2, x: 84, y: 18, link: 'https://survey-pv1.vercel.app' },
 
             // Text: Solution (Center Right)
             { type: 'text', title: 'Solution', content: 'An AI-driven engine that adapts questions based on previous answers.', x: 72, y: 48, rotate: 2 },
@@ -822,7 +822,7 @@ function createGalleryCard(data, index) {
                 pointer-events: none;
                 background: #151920; 
             "></iframe>
-            <div style="position:absolute; top:0; left:0; width:100%; height:100%; cursor:grab; z-index:2;"></div>
+
         `;
     } else if (data.type === 'image') {
         if (data.bg) {
@@ -884,6 +884,25 @@ function createGalleryCard(data, index) {
 
         }, 150 + (index * 150)); // 3. Waterfall Fade-in (Increased delay)
     });
+
+
+    // Add Link Overlay (Generic)
+    const linkUrl = data.link || (data.type === 'iframe' ? data.src : null);
+    if (linkUrl) {
+        // Create overlay link
+        const linkOverlay = document.createElement('a');
+        linkOverlay.href = linkUrl;
+        linkOverlay.target = '_blank';
+        linkOverlay.rel = 'noopener noreferrer';
+        linkOverlay.style.position = 'absolute';
+        linkOverlay.style.top = '0';
+        linkOverlay.style.left = '0';
+        linkOverlay.style.width = '100%';
+        linkOverlay.style.height = '100%';
+        linkOverlay.style.cursor = 'pointer';
+        linkOverlay.style.zIndex = '2';
+        card.appendChild(linkOverlay);
+    }
 
     return card;
 }
