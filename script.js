@@ -258,6 +258,14 @@ function initSystemMap() {
         if (node.type === 'center') {
             el.innerHTML = `<img src="headshot2.webp" alt="${node.label}" class="center-img">`;
             el.classList.add('has-image');
+            // Click to go back to landing page
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent other clicks
+                if (window.showLandingPage) {
+                    window.showLandingPage();
+                }
+            });
         } else {
             const span = document.createElement('span');
             span.innerHTML = node.label.replace(/\n/g, '<br>');
@@ -1097,6 +1105,7 @@ function closeSidequestModal() {
 }
 
 // Landing Page Logic
+// Landing Page Logic
 function initLandingPage() {
     const landingSection = document.getElementById('landing-page');
     const enterBtn = document.getElementById('enter-portfolio-btn');
@@ -1104,6 +1113,20 @@ function initLandingPage() {
     const mainContent = document.querySelector('.hero-container');
 
     if (!landingSection || !enterBtn) return;
+
+    // Function to show landing page (exposed globally for back navigation)
+    window.showLandingPage = function () {
+        landingSection.classList.remove('fade-out');
+        landingSection.style.display = 'block'; // Ensure it's visible
+        if (mainContent) {
+            mainContent.style.opacity = '0';
+            mainContent.style.pointerEvents = 'none';
+        }
+        if (video) {
+            video.currentTime = 0;
+            video.play();
+        }
+    };
 
     enterBtn.addEventListener('click', () => {
         // Fade out landing
@@ -1115,9 +1138,10 @@ function initLandingPage() {
             mainContent.style.pointerEvents = 'auto';
         }
 
-        // Cleanup after transition
+        // Pause video after transition to save resources
         setTimeout(() => {
-            landingSection.remove();
+            if (video) video.pause();
+            // Don't remove(). Just hide via CSS (fade-out class handles visibility:hidden)
             // Ensure system map is looking good (resize trigger)
             window.dispatchEvent(new Event('resize'));
         }, 1000);
