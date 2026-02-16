@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPanel();
     initTheme();
     initSidequestModal();
+    initLandingPage();
 });
 
 function initSystemMap() {
@@ -1093,4 +1094,32 @@ function closeSidequestModal() {
     const modal = document.getElementById('sidequest-modal');
     modal.classList.remove('open');
     sidequestUrl = '';
+}
+
+// Landing Page Logic
+function initLandingPage() {
+    const landingSection = document.getElementById('landing-page');
+    const enterBtn = document.getElementById('enter-portfolio-btn');
+    const video = document.getElementById('landing-video');
+    const mainContent = document.querySelector('.hero-container');
+
+    if (!landingSection || !enterBtn) return;
+
+    enterBtn.addEventListener('click', () => {
+        // Fade out landing
+        landingSection.classList.add('fade-out');
+
+        // Show main content
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.pointerEvents = 'auto';
+        }
+
+        // Cleanup after transition
+        setTimeout(() => {
+            landingSection.remove();
+            // Ensure system map is looking good (resize trigger)
+            window.dispatchEvent(new Event('resize'));
+        }, 1000);
+    });
 }

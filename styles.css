@@ -1160,3 +1160,93 @@ body.light-mode .btn-secondary {
 body.light-mode .btn-secondary:hover {
     background: rgba(0, 0, 0, 0.1);
 }
+
+/* ==========================================================================
+   Landing Page (Video)
+   ========================================================================== */
+#landing-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5000;
+    background-color: #000;
+    overflow: hidden;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+#landing-page.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#landing-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    filter: brightness(0.6);
+    /* darken slightly for text readability */
+}
+
+.landing-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+    color: white;
+    width: 100%;
+    padding: 20px;
+}
+
+.landing-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    animation: simpleFade 1s 0.5s forwards;
+}
+
+.landing-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: simpleFade 1s 1s forwards;
+}
+
+.landing-btn {
+    padding: 14px 32px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: simpleFade 1s 1.5s forwards;
+}
+
+.landing-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.6);
+}

@@ -21,8 +21,24 @@
 </head>
 
 <body>
+    <!-- Landing Page Video -->
+    <section id="landing-page">
+        <video id="landing-video" autoplay loop muted playsinline>
+            <source src="DeskTop.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="landing-overlay">
+            <h1 class="landing-title">Eric Swasey</h1>
+            <p class="landing-subtitle">AI Systems Builder</p>
+            <button id="enter-portfolio-btn" class="landing-btn">
+                Enter Portfolio
+                <span class="material-symbols-rounded">arrow_forward</span>
+            </button>
+        </div>
+    </section>
+
     <!-- Main Canvas -->
-    <main class="hero-container">
+    <main class="hero-container" style="opacity: 0; pointer-events: none; transition: opacity 1s ease;">
         <!-- Feedback Box -->
         <div id="feedback-container">
             <input type="text" id="feedback-input" placeholder="Ask a question or leave feedback..." autocomplete="off">
