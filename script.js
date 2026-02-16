@@ -743,8 +743,9 @@ function openProjectPanel(node) {
     galleryContainer.classList.add('gallery-container');
 
     // Render Cards
+    const projectTitle = data.header && data.header.title ? data.header.title : node.id;
     data.cards.forEach((cardData, index) => {
-        const card = createGalleryCard(cardData, index);
+        const card = createGalleryCard(cardData, index, projectTitle);
         galleryContainer.appendChild(card);
     });
 
@@ -752,7 +753,7 @@ function openProjectPanel(node) {
     panel.classList.add('open');
 }
 
-function createGalleryCard(data, index) {
+function createGalleryCard(data, index, projectTitle) {
     const card = document.createElement('div');
     card.classList.add('gallery-card', `card-${data.type}`);
 
@@ -897,10 +898,11 @@ function createGalleryCard(data, index) {
         // Intercept click for Sidequest Modal
         linkOverlay.addEventListener('click', (e) => {
             e.preventDefault();
-            // Get site name (use card title if available, else domain or generic)
-            let siteName = data.title || 'this site';
-            // Simple extraction if it's a URL
-            if (!data.title && linkUrl.includes('http')) {
+            // Use projectTitle if available, otherwise fallback to existing logic
+            let siteName = projectTitle || data.title || 'this site';
+
+            // Only do URL extraction if we somehow don't have a project title (rare)
+            if (!projectTitle && !data.title && linkUrl.includes('http')) {
                 try {
                     siteName = new URL(linkUrl).hostname;
                 } catch (err) {
