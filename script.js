@@ -258,14 +258,6 @@ function initSystemMap() {
         if (node.type === 'center') {
             el.innerHTML = `<img src="headshot2.webp" alt="${node.label}" class="center-img">`;
             el.classList.add('has-image');
-            // Click to go back to landing page
-            el.style.cursor = 'pointer';
-            el.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent other clicks
-                if (window.showLandingPage) {
-                    window.showLandingPage();
-                }
-            });
         } else {
             const span = document.createElement('span');
             span.innerHTML = node.label.replace(/\n/g, '<br>');
@@ -1113,6 +1105,14 @@ function initLandingPage() {
     const mainContent = document.querySelector('.hero-container');
 
     if (!landingSection || !enterBtn) return;
+
+    // Profile Video Link (Back to Landing)
+    const profileVideoContainer = document.querySelector('.profile-video-container');
+    if (profileVideoContainer) {
+        profileVideoContainer.addEventListener('click', () => {
+            if (window.showLandingPage) window.showLandingPage();
+        });
+    }
 
     // Function to show landing page (exposed globally for back navigation)
     window.showLandingPage = function () {
