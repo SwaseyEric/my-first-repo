@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initParallax();
     initPanel();
     initTheme();
+    initSidequestModal();
 });
 
 function initSystemMap() {
@@ -892,8 +893,24 @@ function createGalleryCard(data, index) {
         // Create overlay link
         const linkOverlay = document.createElement('a');
         linkOverlay.href = linkUrl;
-        linkOverlay.target = '_blank';
-        linkOverlay.rel = 'noopener noreferrer';
+
+        // Intercept click for Sidequest Modal
+        linkOverlay.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Get site name (use card title if available, else domain or generic)
+            let siteName = data.title || 'this site';
+            // Simple extraction if it's a URL
+            if (!data.title && linkUrl.includes('http')) {
+                try {
+                    siteName = new URL(linkUrl).hostname;
+                } catch (err) {
+                    siteName = 'this site';
+                }
+            }
+
+            showSidequestModal(linkUrl, siteName);
+        });
+
         linkOverlay.style.position = 'absolute';
         linkOverlay.style.top = '0';
         linkOverlay.style.left = '0';
@@ -1022,4 +1039,49 @@ function makeGalleryDraggable(card, rotation) {
         card.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         card.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(${rotation}deg) scale(1)`;
     });
+}
+
+// Sidequest Modal Logic
+let sidequestUrl = '';
+
+function initSidequestModal() {
+    const modal = document.getElementById('sidequest-modal');
+    const btnYes = document.getElementById('sidequest-yes');
+    const btnNo = document.getElementById('sidequest-no');
+
+    if (!modal || !btnYes || !btnNo) return;
+
+    // Yes Action
+    btnYes.addEventListener('click', () => {
+        if (sidequestUrl) {
+            window.open(sidequestUrl, '_blank', 'noopener,noreferrer');
+        }
+        closeSidequestModal();
+    });
+
+    // No Action
+    btnNo.addEventListener('click', closeSidequestModal);
+
+    // Close on click outside (optional)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeSidequestModal();
+    });
+}
+
+function showSidequestModal(url, siteName) {
+    const modal = document.getElementById('sidequest-modal');
+    const msgEl = document.getElementById('sidequest-message');
+
+    sidequestUrl = url;
+    if (msgEl) {
+        msgEl.innerText = `Are you taking a sidequest to ${siteName}?`;
+    }
+
+    modal.classList.add('open');
+}
+
+function closeSidequestModal() {
+    const modal = document.getElementById('sidequest-modal');
+    modal.classList.remove('open');
+    sidequestUrl = '';
 }
