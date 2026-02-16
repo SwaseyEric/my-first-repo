@@ -900,7 +900,8 @@ function createGalleryCard(data, index) {
         linkOverlay.style.width = '100%';
         linkOverlay.style.height = '100%';
         linkOverlay.style.cursor = 'pointer';
-        linkOverlay.style.zIndex = '2';
+        linkOverlay.style.pointerEvents = 'auto'; // Force pointer events
+        linkOverlay.style.zIndex = '1000'; // Ensure it's on top of everything
         card.appendChild(linkOverlay);
     }
 
