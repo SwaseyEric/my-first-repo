@@ -1073,10 +1073,17 @@ function initSidequestModal() {
 function showSidequestModal(url, siteName) {
     const modal = document.getElementById('sidequest-modal');
     const msgEl = document.getElementById('sidequest-message');
+    const titleEl = modal.querySelector('.modal-title');
 
     sidequestUrl = url;
     if (msgEl) {
         msgEl.innerText = `Are you taking a sidequest to ${siteName}?`;
+    }
+
+    if (titleEl) {
+        // Simple re-instantiation method
+        const fx = new TextScramble(titleEl);
+        fx.setText('Sidequest Detected');
     }
 
     modal.classList.add('open');
