@@ -1277,7 +1277,8 @@ body.light-mode .btn-secondary:hover {
     display: flex;
     /* Ensure prompt and button align */
     align-items: center;
-    /* margin-left removed to align with start */
+    margin-left: 5em;
+    /* Shift right to align roughly under 'Swasey' */
     font-size: 1rem;
     /* Override terminal-line size to match button */
 }
