@@ -1212,7 +1212,10 @@ body.light-mode .btn-secondary:hover {
     font-family: 'Inter', monospace;
     /* Monospace feel */
     text-align: left;
-    color: var(--text-primary);
+    color: #FFFFFF;
+    /* White text for contrast against video */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    /* Strong shadow for readability */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1228,24 +1231,28 @@ body.light-mode .btn-secondary:hover {
     font-weight: 500;
     display: flex;
     align-items: center;
-    color: var(--text-primary);
+    color: inherit;
+    /* Inherit white */
 }
 
 .terminal-prompt {
-    color: var(--accent-orange);
-    /* Distinct color for prompt */
+    color: #FFA500;
+    /* Bright orange for prompt */
     margin-right: 0.5em;
     font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .terminal-cursor {
     display: inline-block;
     width: 0.6em;
     height: 1.2em;
-    background-color: var(--text-primary);
+    background-color: #FFFFFF;
+    /* White cursor */
     margin-left: 0.1em;
     animation: blink 1s step-end infinite;
     vertical-align: middle;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes blink {
@@ -1274,9 +1281,10 @@ body.light-mode .btn-secondary:hover {
 }
 
 .terminal-btn {
-    background: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--line-color);
+    background: rgba(0, 0, 0, 0.4);
+    /* Semi-transparent dark bg */
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.8);
     padding: 12px 24px;
     font-family: 'Inter', monospace;
     font-size: 1rem;
@@ -1284,12 +1292,15 @@ body.light-mode .btn-secondary:hover {
     transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    backdrop-filter: blur(4px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 .terminal-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px);
 }
 
 /* Light Mode Overrides for Terminal are handled by CSS variables */
