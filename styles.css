@@ -1279,6 +1279,8 @@ body.light-mode .btn-secondary:hover {
     align-items: center;
     margin-left: 3.5em;
     /* Shift left slightly based on feedback */
+    font-size: 1rem;
+    /* Override terminal-line size to match button */
 }
 
 #landing-actions.visible {
