@@ -1271,43 +1271,48 @@ body.light-mode .btn-secondary:hover {
     opacity: 0;
     transition: opacity 1s ease 0.5s;
     /* Delay after typing */
-    /* Removed align-self and margin-left to allow centering */
     margin-top: 1rem;
-    align-self: center;
-    /* Center button relative to container */
+    align-self: flex-start;
+    /* Align left to match name */
+    display: flex;
+    /* Ensure prompt and button align */
+    align-items: center;
 }
 
 #landing-actions.visible {
     opacity: 1;
 }
 
-.terminal-btn {
-    background: rgba(0, 0, 0, 0.4);
-    /* Semi-transparent dark bg */
+.terminal-btn-text {
+    background: transparent;
     color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    padding: 12px 24px;
+    border: none;
+    padding: 0;
     font-family: inherit;
-    /* Match parent font (Inter) */
     font-size: 1.2rem;
-    /* Slightly larger to match name presence */
+    /* Match name size scaling roughly, or keep explicit */
+    /* font-size: clamp(1.5rem, 4vw, 3rem);  Optional: scale like name? */
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
+    /* Slightly smaller than name */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* text-transform: uppercase; REMOVED */
     letter-spacing: 0.02em;
-    /* Reduced spacing */
-    backdrop-filter: blur(4px);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-    border-radius: 4px;
-    /* Slight radius for modern feel */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
 }
 
-.terminal-btn:hover {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    background: rgba(0, 0, 0, 0.7);
-    transform: translateY(-2px);
+.terminal-btn-text:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: #4ade80;
+    /* Matrix green on hover? or stay white */
+    /* color: #FFFFFF; */
+}
+
+/* Remove old button class if unused, or keep for safety */
+.terminal-btn {
+    display: none;
 }
 
 /* Light Mode Overrides for Terminal are handled by CSS variables */
