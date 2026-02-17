@@ -1208,6 +1208,20 @@ body.light-mode .btn-secondary:hover {
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
+    align-items: center;
+    /* Center everything including avatar */
+}
+
+.terminal-avatar-container {
+    margin-bottom: 1rem;
+}
+
+.terminal-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--line-color);
 }
 
 .terminal-line {
