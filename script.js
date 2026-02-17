@@ -1123,24 +1123,73 @@ function initLandingPage() {
 
     // Typing Effect Function
     function startTyping() {
-        terminalText.textContent = ""; // Clear previous
-        landingActions.classList.remove('visible'); // Hide button
+        // Reset state
+        terminalText.textContent = "";
+        landingActions.classList.remove('visible');
+        landingActions.style.display = 'none'; // Hide entirely first
+        enterBtn.textContent = ""; // Clear button text for typing
 
-        let i = 0;
-        clearInterval(typingInterval);
+        // Configuration
+        const nameText = "Eric Swasey";
+        const commandText = "Enter_Portfolio";
+        const typeSpeed = 50;
 
-        typingInterval = setInterval(() => {
-            if (i < textToType.length) {
-                terminalText.textContent += textToType.charAt(i);
-                i++;
+        // Cursor management
+        const mainCursor = document.querySelector('.terminal-line .terminal-cursor');
+        // Ensure main cursor is blinking
+        if (mainCursor) mainCursor.style.display = 'inline-block';
+
+        let charIndex = 0;
+
+        // Step 1: Type Name
+        function typeName() {
+            if (charIndex < nameText.length) {
+                terminalText.textContent += nameText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeName, typeSpeed);
             } else {
-                clearInterval(typingInterval);
-                // Typing complete, show button
-                setTimeout(() => {
-                    landingActions.classList.add('visible');
-                }, 200);
+                // Name finished. 
+                // Stop main cursor blinking/hide it (optional, often terminal cursors move to next line)
+                if (mainCursor) mainCursor.style.display = 'none';
+
+                // Start Step 2 after brief pause
+                setTimeout(prepareCommandLine, 300);
             }
-        }, typingSpeed);
+        }
+
+        // Step 2: Prepare Command Line
+        function prepareCommandLine() {
+            landingActions.style.display = 'flex'; // Show container
+            landingActions.classList.add('visible'); // Fade in container (instant if opaque)
+
+            // Add a cursor to this new line if not present
+            let cmdCursor = landingActions.querySelector('.terminal-cursor');
+            if (!cmdCursor) {
+                cmdCursor = document.createElement('span');
+                cmdCursor.className = 'terminal-cursor';
+                cmdCursor.innerHTML = '_';
+                landingActions.appendChild(cmdCursor);
+            }
+            cmdCursor.style.display = 'inline-block';
+
+            charIndex = 0;
+            setTimeout(typeCommand, 100);
+        }
+
+        // Step 3: Type Command
+        function typeCommand() {
+            const cmdCursor = landingActions.querySelector('.terminal-cursor');
+            if (charIndex < commandText.length) {
+                // Insert text before cursor
+                enterBtn.textContent += commandText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeCommand, typeSpeed);
+            } else {
+                // Finished. Cursor continues blinking at end.
+            }
+        }
+
+        typeName();
     }
 
     // Start on load
