@@ -1289,17 +1289,17 @@ body.light-mode .btn-secondary:hover {
     border: none;
     padding: 0;
     font-family: inherit;
-    font-size: 1.2rem;
-    /* Match name size scaling roughly, or keep explicit */
-    /* font-size: clamp(1.5rem, 4vw, 3rem);  Optional: scale like name? */
-    font-size: clamp(1.2rem, 3vw, 2.5rem);
-    /* Slightly smaller than name */
+    font-size: 0.85rem;
+    /* Significantly smaller */
+    /* font-size: clamp(0.7rem, 1.5vw, 1rem); */
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     letter-spacing: 0.02em;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     position: relative;
+    /* ensure proper alignment with prompt */
+    line-height: 1.5;
 }
 
 .terminal-btn-text:hover {
