@@ -1271,9 +1271,10 @@ body.light-mode .btn-secondary:hover {
     opacity: 0;
     transition: opacity 1s ease 0.5s;
     /* Delay after typing */
-    align-self: flex-start;
-    margin-left: 2.5em;
-    /* Align with text start */
+    /* Removed align-self and margin-left to allow centering */
+    margin-top: 1rem;
+    align-self: center;
+    /* Center button relative to container */
 }
 
 #landing-actions.visible {
@@ -1286,14 +1287,20 @@ body.light-mode .btn-secondary:hover {
     color: #FFFFFF;
     border: 1px solid rgba(255, 255, 255, 0.8);
     padding: 12px 24px;
-    font-family: 'Inter', monospace;
-    font-size: 1rem;
+    font-family: inherit;
+    /* Match parent font (Inter) */
+    font-size: 1.2rem;
+    /* Slightly larger to match name presence */
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    /* text-transform: uppercase; REMOVED */
+    letter-spacing: 0.02em;
+    /* Reduced spacing */
     backdrop-filter: blur(4px);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    /* Slight radius for modern feel */
 }
 
 .terminal-btn:hover {
