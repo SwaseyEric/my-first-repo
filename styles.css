@@ -70,6 +70,10 @@ body.light-mode {
     transform: rotate(15deg);
 }
 
+body.light-mode .theme-toggle {
+    color: var(--accent-blue);
+}
+
 body.light-mode .theme-toggle:hover {
     color: var(--text-inverse);
 }
