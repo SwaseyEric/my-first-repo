@@ -52,7 +52,7 @@ body.light-mode {
     right: 30px;
     background: transparent;
     border: 1px solid var(--line-color);
-    color: var(--text-primary);
+    color: var(--accent-orange);
     width: 44px;
     height: 44px;
     border-radius: 50%;
