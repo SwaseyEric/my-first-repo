@@ -300,16 +300,19 @@ function initSystemMap() {
     });
 
     // Initialize Scramble on "AI Systems Builder" (Left Panel)
-    const roleEl = document.querySelector('.role');
+    const roleEl = document.getElementById('role-scramble');
     if (roleEl) {
         const fx = new TextScramble(roleEl);
         // Scramble on load
-        fx.setText('AI Systems Builder');
+        fx.setText('Systems Builder');
 
-        // Scramble on hover
-        roleEl.addEventListener('mouseenter', () => {
-            fx.setText('AI Systems Builder');
-        });
+        // Scramble on hover (target parent to trigger on full text hover)
+        const roleContainer = document.querySelector('.role');
+        if (roleContainer) {
+            roleContainer.addEventListener('mouseenter', () => {
+                fx.setText('Systems Builder');
+            });
+        }
     }
 
     // Initialize Feedback
