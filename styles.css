@@ -1184,8 +1184,6 @@ body.light-mode .btn-secondary:hover {
     width: 100vw;
     height: 100vh;
     z-index: 5000;
-    background-color: var(--bg-deep);
-    /* Use variable for theme switching */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1199,6 +1197,17 @@ body.light-mode .btn-secondary:hover {
     pointer-events: none;
 }
 
+#landing-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    /* Optional: Add filter if text contrast is needed, e.g., brightness(0.9) */
+}
+
 .terminal-container {
     font-family: 'Inter', monospace;
     /* Monospace feel */
@@ -1208,22 +1217,11 @@ body.light-mode .btn-secondary:hover {
     flex-direction: column;
     align-items: flex-start;
     gap: 2rem;
-    align-items: center;
-    /* Center everything including avatar */
+    z-index: 1;
+    /* Sit above the video */
 }
 
-.terminal-avatar-container {
-    margin-bottom: 1rem;
-}
-
-.terminal-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--line-color);
-}
-
+/* Removed avatar styles */
 .terminal-line {
     font-size: clamp(2rem, 5vw, 4rem);
     /* Responsive size */
