@@ -1277,6 +1277,8 @@ body.light-mode .btn-secondary:hover {
     display: flex;
     /* Ensure prompt and button align */
     align-items: center;
+    margin-left: 2rem;
+    /* Indent slightly to the right */
 }
 
 #landing-actions.visible {
