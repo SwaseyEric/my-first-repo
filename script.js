@@ -1098,13 +1098,20 @@ function closeSidequestModal() {
 
 // Landing Page Logic
 // Landing Page Logic
+// Landing Page Logic (Terminal Style)
 function initLandingPage() {
     const landingSection = document.getElementById('landing-page');
     const enterBtn = document.getElementById('enter-portfolio-btn');
-    const video = document.getElementById('landing-video');
     const mainContent = document.querySelector('.hero-container');
+    const terminalText = document.getElementById('terminal-text');
+    const landingActions = document.getElementById('landing-actions');
 
-    if (!landingSection || !enterBtn) return;
+    // Typing Configuration
+    const textToType = "Eric Swasey";
+    const typingSpeed = 50; // ms per character
+    let typingInterval;
+
+    if (!landingSection || !enterBtn || !terminalText) return;
 
     // Profile Video Link (Back to Landing)
     const profileVideoContainer = document.querySelector('.profile-video-container');
@@ -1114,36 +1121,64 @@ function initLandingPage() {
         });
     }
 
+    // Typing Effect Function
+    function startTyping() {
+        terminalText.textContent = ""; // Clear previous
+        landingActions.classList.remove('visible'); // Hide button
+
+        let i = 0;
+        clearInterval(typingInterval);
+
+        typingInterval = setInterval(() => {
+            if (i < textToType.length) {
+                terminalText.textContent += textToType.charAt(i);
+                i++;
+            } else {
+                clearInterval(typingInterval);
+                // Typing complete, show button
+                setTimeout(() => {
+                    landingActions.classList.add('visible');
+                }, 200);
+            }
+        }, typingSpeed);
+    }
+
+    // Start on load
+    startTyping();
+
     // Function to show landing page (exposed globally for back navigation)
     window.showLandingPage = function () {
         landingSection.classList.remove('fade-out');
-        landingSection.style.display = 'block'; // Ensure it's visible
+        landingSection.style.display = 'flex'; // Ensure it's visible (flex for centering)
         if (mainContent) {
             mainContent.style.opacity = '0';
             mainContent.style.pointerEvents = 'none';
         }
-        if (video) {
-            video.currentTime = 0;
-            video.play();
-        }
+        // Restart typing effect when returning
+        startTyping();
     };
 
     enterBtn.addEventListener('click', () => {
-        // Fade out landing
+        // Fade out landing (same as before)
         landingSection.classList.add('fade-out');
 
         // Show main content
         if (mainContent) {
             mainContent.style.opacity = '1';
-            mainContent.style.pointerEvents = 'auto';
+            mainContent.style.pointerEvents = 'all';
+
+            // Trigger entry animations if any
+            const fades = document.querySelectorAll('.fade-in');
+            fades.forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; /* trigger reflow */
+                el.style.animation = '';
+            });
         }
 
-        // Pause video after transition to save resources
+        // Hide landing after transition to save resources
         setTimeout(() => {
-            if (video) video.pause();
-            // Don't remove(). Just hide via CSS (fade-out class handles visibility:hidden)
-            // Ensure system map is looking good (resize trigger)
-            window.dispatchEvent(new Event('resize'));
+            landingSection.style.display = 'none';
         }, 1000);
     });
 }

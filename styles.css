@@ -1175,7 +1175,7 @@ body.light-mode .btn-secondary:hover {
    Landing Page (Video)
    ========================================================================== */
 /* ==========================================================================
-   Landing Page (Video)
+   Landing Page (Terminal Style)
    ========================================================================== */
 #landing-page {
     position: fixed;
@@ -1184,9 +1184,13 @@ body.light-mode .btn-secondary:hover {
     width: 100vw;
     height: 100vh;
     z-index: 5000;
-    background-color: #000;
+    background-color: var(--bg-deep);
+    /* Use variable for theme switching */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    transition: opacity 1s ease, visibility 1s ease;
+    transition: opacity 1s ease, visibility 1s ease, background-color 0.4s ease;
 }
 
 #landing-page.fade-out {
@@ -1195,72 +1199,96 @@ body.light-mode .btn-secondary:hover {
     pointer-events: none;
 }
 
-#landing-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    filter: brightness(0.6);
-    /* darken slightly for text readability */
+.terminal-container {
+    font-family: 'Inter', monospace;
+    /* Monospace feel */
+    text-align: left;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
-.landing-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 2;
-    color: white;
-    width: 100%;
-    padding: 20px;
-}
-
-.landing-title {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    animation: simpleFade 1s 0.5s forwards;
-    color: white;
-}
-
-.landing-subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: simpleFade 1s 1s forwards;
-}
-
-.landing-btn {
-    padding: 14px 32px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50px;
-    font-size: 1rem;
+.terminal-line {
+    font-size: clamp(2rem, 5vw, 4rem);
+    /* Responsive size */
     font-weight: 500;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: simpleFade 1s 1.5s forwards;
+    color: var(--text-primary);
 }
 
-.landing-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.6);
+.terminal-prompt {
+    color: var(--accent-orange);
+    /* Distinct color for prompt */
+    margin-right: 0.5em;
+    font-weight: 700;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.2em;
+    background-color: var(--text-primary);
+    margin-left: 0.1em;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+#landing-actions {
+    opacity: 0;
+    transition: opacity 1s ease 0.5s;
+    /* Delay after typing */
+    align-self: flex-start;
+    margin-left: 2.5em;
+    /* Align with text start */
+}
+
+#landing-actions.visible {
+    opacity: 1;
+}
+
+.terminal-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--line-color);
+    padding: 12px 24px;
+    font-family: 'Inter', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.terminal-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Light Mode Overrides for Terminal are handled by CSS variables */
+body.light-mode #landing-page {
+    background-color: #ffffff;
+}
+
+body.light-mode .terminal-cursor {
+    background-color: #111827;
+}
+
+body.light-mode .terminal-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
 }

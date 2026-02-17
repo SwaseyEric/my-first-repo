@@ -21,19 +21,18 @@
 </head>
 
 <body>
-    <!-- Landing Page Video -->
+    <!-- Landing Page (Terminal Style) -->
     <section id="landing-page">
-        <video id="landing-video" autoplay loop muted playsinline>
-            <source src="landing-video.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
-        <div class="landing-overlay">
-            <h1 class="landing-title">Eric Swasey</h1>
-            <p class="landing-subtitle">AI Systems Builder</p>
-            <button id="enter-portfolio-btn" class="landing-btn">
-                Enter Portfolio
-                <span class="material-symbols-rounded">arrow_forward</span>
-            </button>
+        <div class="terminal-container">
+            <div class="terminal-line">
+                <span class="terminal-prompt">&gt;</span>
+                <span id="terminal-text"></span><span class="terminal-cursor">_</span>
+            </div>
+            <div id="landing-actions" class="hidden">
+                <button id="enter-portfolio-btn" class="terminal-btn">
+                    Enter_Portfolio
+                </button>
+            </div>
         </div>
     </section>
 
