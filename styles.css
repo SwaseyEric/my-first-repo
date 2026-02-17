@@ -1279,7 +1279,7 @@ body.light-mode .btn-secondary:hover {
     align-items: center;
     margin-left: 5em;
     /* Shift right to align roughly under 'Swasey' */
-    font-size: 1rem;
+    font-size: 1.25rem;
     /* Override terminal-line size to match button */
 }
 
@@ -1293,8 +1293,8 @@ body.light-mode .btn-secondary:hover {
     border: none;
     padding: 0;
     font-family: inherit;
-    font-size: 1rem;
-    /* Restored to previous size */
+    font-size: 1.25rem;
+    /* Increased size based on feedback */
     /* font-size: clamp(0.8rem, 2vw, 1.5rem); */
     font-weight: 500;
     cursor: pointer;
