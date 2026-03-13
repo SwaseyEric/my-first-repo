@@ -1160,7 +1160,7 @@ function initLandingPage() {
     function startTyping() {
         // Reset state
         terminalText.textContent = "";
-        landingActions.classList.remove('visible');
+        landingActions.classList.remove('visible', 'hidden');
         landingActions.style.display = 'none'; // Hide entirely first
         enterBtn.textContent = ""; // Clear button text for typing
 
