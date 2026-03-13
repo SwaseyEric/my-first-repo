@@ -1341,3 +1341,44 @@ body.light-mode .terminal-cursor {
 body.light-mode .terminal-btn:hover {
     background: rgba(0, 0, 0, 0.05);
 }
+
+/* Terminal Input Styling */
+.terminal-label {
+    margin-right: 8px;
+    color: var(--text-primary);
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    color: var(--accent-orange);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    outline: none;
+    width: 6ch;
+    letter-spacing: 2px;
+}
+
+.terminal-input::placeholder {
+    color: rgba(255, 107, 0, 0.3);
+}
+
+.error-text {
+    color: #ff4444;
+    margin-left: 20px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none !important;
+}

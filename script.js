@@ -162,6 +162,17 @@ const nodes = [
             impact: '$200k annual savings; reduced wait times by 90%.',
             stack: ['Twilio', 'GPT-4', 'Google Cloud', 'Python']
         }
+    },
+    {
+        id: 'proj5', type: 'project', label: 'CX Space', angle: 270,
+        data: {
+            title: 'CX Space',
+            problem: 'Static help centers fail to answer specific user questions.',
+            signal: 'User queries and feedback analysis.',
+            system: 'RAG pipeline retrieves relevant context for LLM generation.',
+            impact: 'Instant resolution for frequent queries; reduced support tickets.',
+            stack: ['Next.js', 'Express', 'MongoDB', 'OpenAI']
+        }
     }
 ];
 
@@ -180,7 +191,9 @@ const links = [
     ['proj3', 'cap2'], // DayWell -> Design
     ['proj3', 'cap3'], // DayWell -> Automation
     ['proj4', 'cap3'], // Pingful -> Automation
-    ['proj4', 'cap1']  // Pingful -> Signal
+    ['proj4', 'cap1'], // Pingful -> Signal
+    ['proj5', 'cap2'], // CX Space -> Design
+    ['proj5', 'cap3']  // CX Space -> Automation
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -676,6 +689,25 @@ const galleryData = {
 
             // Visual: Backend Architecture
             { type: 'image', bg: 'url(backend.webp)', label: 'Backend Architecture', rotate: -3, x: 84, y: 78 }
+        ]
+    },
+    'proj5': { // CX Space
+        header: {
+            title: 'CX Space',
+            subtitle: 'RAG-Powered Help Center',
+            meta: 'Web App • 2024'
+        },
+        cards: [
+            // Text: Problem
+            { type: 'text', title: 'Problem', titleColor: 'orange', content: 'Static help centers fail to answer specific user questions.', x: 60, y: 18, rotate: -2 },
+            // Visual: Live Preview
+            { type: 'image', bg: 'url(penguin-bot-headset.png)', label: 'AI Support Bot', rotate: 2, x: 84, y: 18 },
+            // Text: Solution
+            { type: 'text', title: 'Solution', content: 'RAG pipeline retrieves relevant context for LLM generation.', x: 72, y: 48, rotate: 1 },
+            // Text: Impact
+            { type: 'text', title: 'Impact', titleColor: 'orange', content: 'Instant resolution for frequent queries; reduced support tickets.', x: 60, y: 78, rotate: 3 },
+            // Text: Stack
+            { type: 'text', title: 'Stack', titleColor: 'orange', content: 'Next.js · Express · MongoDB · OpenAI', x: 84, y: 78, rotate: -3 }
         ]
     }
 };
@@ -1211,6 +1243,61 @@ function initLandingPage() {
     };
 
     enterBtn.addEventListener('click', () => {
+        // Show Passcode Container instead of immediate transition
+        const passcodeContainer = document.getElementById('passcode-container');
+        const passcodeInput = document.getElementById('passcode-input');
+
+        if (passcodeContainer && passcodeInput) {
+            passcodeContainer.classList.remove('hidden');
+            passcodeContainer.style.display = 'flex';
+            passcodeInput.focus();
+        }
+    });
+
+    // Passcode Verification Logic
+    const passcodeInput = document.getElementById('passcode-input');
+    const passcodeError = document.getElementById('passcode-error');
+    const CORRECT_PASSCODE = "344600";
+
+    if (passcodeInput) {
+        passcodeInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (passcodeError) passcodeError.classList.add('hidden');
+
+            if (val.length === CORRECT_PASSCODE.length) {
+                if (val === CORRECT_PASSCODE) {
+                    // Success! Proceed to portfolio
+                    executePortfolioTransition();
+                } else {
+                    // Fail!
+                    if (passcodeError) passcodeError.classList.remove('hidden');
+                    // Shake effect or clear
+                    passcodeInput.value = '';
+                    setTimeout(() => {
+                        if (passcodeError) passcodeError.classList.add('hidden');
+                    }, 2000);
+                }
+            }
+        });
+
+        // Also allow Enter key
+        passcodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = passcodeInput.value;
+                if (val === CORRECT_PASSCODE) {
+                    executePortfolioTransition();
+                } else if (val.length > 0) {
+                    if (passcodeError) passcodeError.classList.remove('hidden');
+                    passcodeInput.value = '';
+                    setTimeout(() => {
+                        if (passcodeError) passcodeError.classList.add('hidden');
+                    }, 2000);
+                }
+            }
+        });
+    }
+
+    function executePortfolioTransition() {
         // Fade out landing (same as before)
         landingSection.classList.add('fade-out');
 
@@ -1232,5 +1319,5 @@ function initLandingPage() {
         setTimeout(() => {
             landingSection.style.display = 'none';
         }, 1000);
-    });
+    }
 }
