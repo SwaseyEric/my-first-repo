@@ -1281,14 +1281,12 @@ body.light-mode .btn-secondary:hover {
     opacity: 0;
     transition: opacity 1s ease 0.5s;
     /* Delay after typing */
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     align-self: flex-start;
     /* Align left to match name */
     display: flex;
     /* Ensure prompt and button align */
     align-items: center;
-    margin-left: 5em;
-    /* Shift right to align roughly under 'Swasey' */
     font-size: 1.25rem;
     /* Override terminal-line size to match button */
 }

@@ -1243,15 +1243,19 @@ function initLandingPage() {
     };
 
     enterBtn.addEventListener('click', () => {
-        // Show Passcode Container instead of immediate transition
-        const passcodeContainer = document.getElementById('passcode-container');
-        const passcodeInput = document.getElementById('passcode-input');
+        // Hide button and show Passcode Container
+        landingActions.classList.remove('visible');
+        setTimeout(() => {
+            landingActions.classList.add('hidden');
+            const passcodeContainer = document.getElementById('passcode-container');
+            const passcodeInput = document.getElementById('passcode-input');
 
-        if (passcodeContainer && passcodeInput) {
-            passcodeContainer.classList.remove('hidden');
-            passcodeContainer.style.display = 'flex';
-            passcodeInput.focus();
-        }
+            if (passcodeContainer && passcodeInput) {
+                passcodeContainer.classList.remove('hidden');
+                passcodeContainer.style.display = 'flex';
+                passcodeInput.focus();
+            }
+        }, 500); // Wait for fade out
     });
 
     // Passcode Verification Logic
